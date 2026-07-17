@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loonmars Space Lab</title>
+<meta name="description" content="Loonmars Space Lab é uma startup moçambicana de investigação, desenvolvimento e inovação em sistemas de tecnologias espaciais e arquitetura aeroespacial.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Fundo estrelado, apenas para fins decorativos. -->
+<canvas id="starfield" aria-hidden="true"></canvas>
+
+<!-- HEADER / NAV -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="30" height="30">
+          <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+          <ellipse cx="20" cy="20" rx="18" ry="7" fill="none" stroke="currentColor" stroke-width="1.2"/>
+          <circle cx="20" cy="20" r="4" fill="currentColor"/>
+        </svg>
+      </span>
+      <span class="brand-text">
+        <span class="brand-name">LOONMARS</span>
+        <span class="brand-sub">SPACE LAB</span>
+      </span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="index.html" data-nav>Casa</a>
+      <a href="sobre.html" data-nav>Conheça a LMSL </a>
+      <a href="#processo" data-nav>Processo</a>
+      <a href="#programas" data-nav>Programas</a>
+      <a href="#equipa" data-nav>Equipa</a>
+      <a href="#contacto" class="nav-cta" data-nav>Contacto</a>
+    </nav>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainNav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+
+
+  <div class="hero-orbit" aria-hidden="true">
+    <svg viewBox="0 0 520 520" class="orbit-svg">
+      <defs>
+        <radialGradient id="planetGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="var(--ochre)" stop-opacity="0.35"/>
+          <stop offset="100%" stop-color="var(--ochre)" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <circle cx="260" cy="260" r="230" fill="url(#planetGlow)"/>
+      <ellipse cx="260" cy="260" rx="200" ry="200" class="orbit-ring ring-1"/>
+      <ellipse cx="260" cy="260" rx="150" ry="150" class="orbit-ring ring-2"/>
+      <ellipse cx="260" cy="260" rx="95" ry="95" class="orbit-ring ring-3"/>
+
+      <!-- Origin marker: Maputo -->
+      <g class="origin-marker">
+        <circle cx="260" cy="355" r="4" fill="var(--signal)"/>
+        <circle cx="260" cy="355" r="9" fill="none" stroke="var(--signal)" stroke-width="1" opacity="0.6"/>
+        <text x="272" y="359" class="orbit-label mono">MAPUTO</text>
+      </g>
+
+      <!-- Launch trajectory -->
+      <path id="trajectory" class="trajectory-path"
+            d="M 260 355 C 210 300, 150 210, 175 130 C 190 85, 230 65, 260 65"
+            fill="none"/>
+
+      <!-- Satellite riding the trajectory -->
+      <g class="satellite">
+        <circle r="5" fill="var(--star)"/>
+        <rect x="-9" y="-2" width="6" height="4" fill="var(--star)" opacity="0.8"/>
+        <rect x="3" y="-2" width="6" height="4" fill="var(--star)" opacity="0.8"/>
+      </g>
+
+      <circle cx="260" cy="65" r="3" fill="var(--star)" opacity="0.9"/>
+      <text x="272" y="69" class="orbit-label mono">ÓRBITA</text>
+    </svg>
+  </div>
+
+  <div class="scroll-cue mono" aria-hidden="true">
+    <span>DESLIZE</span>
+    <span class="scroll-line"></span>
+  </div>
+</section>
+
+<main>
+
+<!-- ============ MISSÃO ============ -->
+<section class="section" id="missao">
+  <div class="section-inner grid-2">
+    <div class="reveal">
+      <p class="eyebrow mono">001 — Missão</p>
+      <h2 class="section-title">
+        Investigação séria, aplicada a um propósito nacional.
+      </h2>
+      <p class="body-text">
+        Somos uma startup moçambicana dedicada à investigação, desenvolvimento e inovação em
+        sistemas de tecnologias espaciais e arquitetura. Trabalhamos em pequenos satélites,
+        estruturas para ambientes extremos e infraestrutura de suporte em terra — sempre com
+        um objectivo claro: contribuir para o avanço tecnológico do país e posicionar
+        Moçambique no ecossistema global da exploração espacial.
+      </p>
+      <p class="body-text">
+        Acreditamos que a capacidade espacial não é um luxo distante, mas uma infraestrutura
+        estratégica — para comunicações, observação da Terra, agricultura, gestão de
+        catástrofes naturais e formação da próxima geração de engenheiros moçambicanos.
+      </p>
+    </div>
+
+
+<!-- ============ EQUIPA ============ -->
+<section class="section" id="equipa">
+  <div class="section-inner">
+    <p class="eyebrow mono">005 — Equipa</p>
+    <h2 class="section-title">As pessoas por trás da órbita.</h2>
+    <p class="body-text max-60">
+      Uma equipa multidisciplinar de engenharia, arquitetura e ciência — substitua
+      estes espaços pelos dados reais da sua equipa.
+    </p>
+
+    <div class="team-grid reveal">
+      <article class="team-card">
+        <div class="avatar mono">FM</div>
+        <h3>Nome do Fundador</h3>
+        <p class="team-role">Fundador &amp; Director Executivo</p>
+      </article>
+      <article class="team-card">
+        <div class="avatar mono">EC</div>
+        <h3>Nome da Engenheira</h3>
+        <p class="team-role">Directora de Engenharia de Sistemas</p>
+      </article>
+      <article class="team-card">
+        <div class="avatar mono">AR</div>
+        <h3>Nome do Arquitecto</h3>
+        <p class="team-role">Líder de Arquitectura Espacial</p>
+      </article>
+      <article class="team-card">
+        <div class="avatar mono">IP</div>
+        <h3>Nome do Investigador</h3>
+        <p class="team-role">Investigador de Materiais</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section class="section section-alt" id="contacto">
+  <div class="section-inner grid-2">
+    <div class="reveal">
+      <p class="eyebrow mono">006 — Contacto</p>
+      <h2 class="section-title">Vamos construir isto juntos.</h2>
+      <p class="body-text">
+        Investigadores, engenheiros, instituições e parceiros são bem-vindos a
+        entrar em contacto — para colaborações, investimento ou simples curiosidade
+        sobre o que estamos a construir.
+      </p>
+
+      <ul class="contact-list mono">
+        <li><span>Email</span><a href="mailto:contacto@loonmarsspacelab.co.mz">contacto@loonmarsspacelab.co.mz</a></li>
+        <li><span>Telefone</span><a href="tel:+258840000000">+258 84 000 0000</a></li>
+        <li><span>Sede</span><span>Maputo, Moçambique</span></li>
+      </ul>
+
+      <div class="social-row">
+        <a href="#" aria-label="LinkedIn">LinkedIn</a>
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="X / Twitter">X</a>
+      </div>
+    </div>
+
+    <form class="contact-form reveal" id="contactForm" novalidate>
+      <div class="form-row">
+        <label for="name">Nome</label>
+        <input type="text" id="name" name="name" required autocomplete="name" placeholder="O seu nome">
+      </div>
+      <div class="form-row">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required autocomplete="email" placeholder="voce@exemplo.com">
+      </div>
+      <div class="form-row">
+        <label for="subject">Assunto</label>
+        <select id="subject" name="subject">
+          <option value="colaboracao">Colaboração / Parceria</option>
+          <option value="investimento">Investimento</option>
+          <option value="imprensa">Imprensa</option>
+          <option value="outro">Outro</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="message">Mensagem</label>
+        <textarea id="message" name="message" rows="4" required placeholder="Escreva a sua mensagem..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-full">Enviar mensagem</button>
+      <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-name">LOONMARS</span>
+      <span class="brand-sub">SPACE LAB</span>
+    </div>
+    <nav class="footer-nav">
+      <a href="#missao">Missão</a>
+      <a href="#areas">Áreas de I&amp;D</a>
+      <a href="#processo">Processo</a>
+      <a href="#programas">Programas</a>
+      <a href="#equipa">Equipa</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <p class="footer-copy mono">© <span id="year"></span> Loonmars Space Lab — Maputo, Moçambique</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
