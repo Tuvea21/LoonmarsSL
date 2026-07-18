@@ -114,7 +114,7 @@ select:focus-visible {
   align-items: center;
 }
 .brand-logo {
-  height: 86px;
+  height: 86px; /* Tamanho do logo na NAV */
   width: auto;
   display: block;
 }
@@ -229,7 +229,7 @@ select:focus-visible {
 .hero-orbit {
   position: absolute;
   right: -6%;
-  top: 50%;
+  top: calc(50% + (var(--header-h) / 2));
   transform: translateY(-50%);
   width: min(60vw, 640px);
   aspect-ratio: 1;
@@ -586,7 +586,7 @@ a.area-card { display: block; cursor: pointer; }
 
 @media (max-width: 520px) {
   .header-inner { padding: 0.75rem var(--pad); }
-  .brand-logo { height: 36px; }
+  .brand-logo { height: 66px; } /* Tamanho do logo na NAV do mobile toggle */
   .hero-actions { flex-direction: column; align-items: stretch; }
   .stat-row { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
   .stat-label { text-align: left; }
