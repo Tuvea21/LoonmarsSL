@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Equipa — Loonmars Space Lab</title>
+<meta name="description" content="A equipa multidisciplinar da Loonmars Space Lab.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<canvas id="starfield" aria-hidden="true"></canvas>
+
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="30" height="30">
+          <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+          <ellipse cx="20" cy="20" rx="18" ry="7" fill="none" stroke="currentColor" stroke-width="1.2"/>
+          <circle cx="20" cy="20" r="4" fill="currentColor"/>
+        </svg>
+      </span>
+      <span class="brand-text">
+        <span class="brand-name">LOONMARS</span>
+        <span class="brand-sub">SPACE LAB</span>
+      </span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="index.html" data-nav>Início</a>
+      <a href="missao.html" data-nav>Missão</a>
+      <a href="areas.html" data-nav>Áreas de I&D</a>
+      <a href="processo.html" data-nav>Processo</a>
+      <a href="programas.html" data-nav>Programas</a>
+      <a href="equipa.html" class="active" data-nav>Equipa</a>
+      <a href="contacto.html" class="nav-cta" data-nav>Contacto</a>
+    </nav>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainNav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="page-header">
+  <div class="section-inner">
+    <p class="eyebrow mono">005 — Equipa</p>
+    <h1 class="section-title big-title reveal in-view">As pessoas por trás da órbita.</h1>
+    <p class="body-text max-60 reveal in-view">Uma equipa multidisciplinar de engenharia, arquitetura e ciência — substitua estes espaços pelos dados reais da sua equipa.</p>
+  </div>
+</section>
+
+<main>
+<section class="section">
+  <div class="section-inner">
+    <div class="team-grid reveal">
+      <article class="team-card">
+        <div class="avatar mono">FM</div>
+        <h3>Nome do Fundador</h3>
+        <p class="team-role">Fundador &amp; Director Executivo</p>
+      </article>
+      <article class="team-card">
+        <div class="avatar mono">EC</div>
+        <h3>Nome da Engenheira</h3>
+        <p class="team-role">Directora de Engenharia de Sistemas</p>
+      </article>
+      <article class="team-card">
+        <div class="avatar mono">AR</div>
+        <h3>Nome do Arquitecto</h3>
+        <p class="team-role">Líder de Arquitectura Espacial</p>
+      </article>
+      <article class="team-card">
+        <div class="avatar mono">IP</div>
+        <h3>Nome do Investigador</h3>
+        <p class="team-role">Investigador de Materiais</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-band">
+  <div class="section-inner cta-inner reveal">
+    <h2 class="section-title">Quer juntar-se a nós ou colaborar?</h2>
+    <a href="contacto.html" class="btn btn-primary">Fale connosco</a>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-name">LOONMARS</span>
+      <span class="brand-sub">SPACE LAB</span>
+    </div>
+    <nav class="footer-nav">
+      <a href="missao.html">Missão</a>
+      <a href="areas.html">Áreas de I&amp;D</a>
+      <a href="processo.html">Processo</a>
+      <a href="programas.html">Programas</a>
+      <a href="equipa.html">Equipa</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+    <p class="footer-copy mono">© <span id="year"></span> Loonmars Space Lab — Maputo, Moçambique</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
