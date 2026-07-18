@@ -6,12 +6,32 @@
   "use strict";
 
   var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var header = document.getElementById("siteHeader");
+
+  /* ---------------- Keep --header-h in sync with the real header size ----
+     This means the hero and page-header top spacing always adapts, no
+     matter how large or small the logo (.brand-logo / .footer-logo in
+     styles.css) is set to. */
+  function updateHeaderHeight() {
+    var h = header.offsetHeight;
+    if (h > 0) {
+      document.documentElement.style.setProperty("--header-h", h + "px");
+    }
+  }
+  updateHeaderHeight();
+  window.addEventListener("resize", updateHeaderHeight, { passive: true });
+  window.addEventListener("load", updateHeaderHeight);
+  // Logo images may finish loading slightly after first paint, which can
+  // change the header's height — re-measure once they're ready too.
+  document.querySelectorAll(".brand-logo").forEach(function (img) {
+    if (img.complete) return;
+    img.addEventListener("load", updateHeaderHeight);
+  });
 
   /* ---------------- Header shrink on scroll ----------------
      The "active" nav link itself is set per-page directly in the HTML
      (see the class="active" attribute on the current page's nav link),
      since each page is now a separate file rather than an anchor target. */
-  var header = document.getElementById("siteHeader");
   var navLinks = Array.prototype.slice.call(document.querySelectorAll("[data-nav]"));
 
   function onScroll() {
