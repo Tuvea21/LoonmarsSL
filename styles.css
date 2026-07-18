@@ -114,7 +114,7 @@ select:focus-visible {
   align-items: center;
 }
 .brand-logo {
-  height: 86px; /* Tamanho do logo na NAV */
+  height: 46px;
   width: auto;
   display: block;
 }
@@ -179,7 +179,7 @@ select:focus-visible {
   display: flex;
   align-items: center;
   padding: calc(var(--header-h) + 2rem) var(--pad) 4rem;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 .hero-inner {
   max-width: 640px;
