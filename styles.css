@@ -5,12 +5,9 @@
    ========================================================================== */
 
 :root {
-  
   /* Header height — kept in sync automatically by script.js, this is just a fallback */
   --header-h: 84px;
 
-  
-  
   /* Color */
   --void: #0a0e1a;         /* page background — night sky */
   --deep: #10182b;         /* raised panels */
@@ -117,7 +114,7 @@ select:focus-visible {
   align-items: center;
 }
 .brand-logo {
-  height: 82px; /* Logo da NAV */
+  height: 86px; /* Tamanho do logo na NAV */
   width: auto;
   display: block;
 }
@@ -181,7 +178,7 @@ select:focus-visible {
   min-height: 100svh;
   display: flex;
   align-items: center;
-  padding: 6.5rem var(--pad) 4rem;
+  padding: calc(var(--header-h) + 2rem) var(--pad) 4rem;
   overflow: hidden;
 }
 .hero-inner {
@@ -295,7 +292,7 @@ select:focus-visible {
 .page-header {
   position: relative;
   z-index: 1;
-  padding: clamp(7.5rem, 14vw, 10.5rem) 0 clamp(2.5rem, 5vw, 3.5rem);
+  padding: calc(var(--header-h) + 2.5rem) 0 clamp(2.5rem, 5vw, 3.5rem);
 }
 .big-title {
   font-size: clamp(2rem, 4.6vw, 3.2rem);
@@ -548,7 +545,7 @@ a.area-card { display: block; cursor: pointer; }
   gap: 1.4rem;
 }
 .footer-brand { display: flex; flex-direction: column; line-height: 1.2; }
-.footer-logo { height: 26px; width: auto; opacity: 0.9; }
+.footer-logo { height: 36px; width: auto; opacity: 0.9; }
 .footer-nav { display: flex; flex-wrap: wrap; gap: 1.3rem; }
 .footer-nav a { color: var(--muted); font-size: 0.85rem; }
 .footer-nav a:hover { color: var(--star); }
@@ -583,14 +580,13 @@ a.area-card { display: block; cursor: pointer; }
   .nav-cta { align-self: flex-start; }
   .menu-toggle { display: flex; }
 
-  .hero { padding-top: 6rem; }
   .hero-orbit { display: none; }
   .process-step { grid-template-columns: 44px 1fr; gap: 1rem; }
 }
 
 @media (max-width: 520px) {
   .header-inner { padding: 0.75rem var(--pad); }
-  .brand-logo { height: 66px; } /* Logo da NAV Responsiva */
+  .brand-logo { height: 36px; }
   .hero-actions { flex-direction: column; align-items: stretch; }
   .stat-row { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
   .stat-label { text-align: left; }
