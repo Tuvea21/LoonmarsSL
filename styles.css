@@ -5,6 +5,12 @@
    ========================================================================== */
 
 :root {
+  
+  /* Header height — kept in sync automatically by script.js, this is just a fallback */
+  --header-h: 84px;
+
+  
+  
   /* Color */
   --void: #0a0e1a;         /* page background — night sky */
   --deep: #10182b;         /* raised panels */
