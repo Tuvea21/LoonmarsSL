@@ -7,15 +7,12 @@
 
   var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---------------- Header shrink + active nav link ---------------- */
+  /* ---------------- Header shrink on scroll ----------------
+     The "active" nav link itself is set per-page directly in the HTML
+     (see the class="active" attribute on the current page's nav link),
+     since each page is now a separate file rather than an anchor target. */
   var header = document.getElementById("siteHeader");
   var navLinks = Array.prototype.slice.call(document.querySelectorAll("[data-nav]"));
-  var sections = navLinks
-    .map(function (link) {
-      var id = link.getAttribute("href");
-      return id && id.charAt(0) === "#" ? document.querySelector(id) : null;
-    })
-    .filter(Boolean);
 
   function onScroll() {
     if (window.scrollY > 12) {
@@ -26,24 +23,6 @@
   }
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
-
-  if ("IntersectionObserver" in window && sections.length) {
-    var navObserver = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          var id = "#" + entry.target.id;
-          var link = navLinks.find(function (l) { return l.getAttribute("href") === id; });
-          if (!link) return;
-          if (entry.isIntersecting) {
-            navLinks.forEach(function (l) { l.classList.remove("active"); });
-            link.classList.add("active");
-          }
-        });
-      },
-      { rootMargin: "-45% 0px -45% 0px" }
-    );
-    sections.forEach(function (s) { navObserver.observe(s); });
-  }
 
   /* ---------------- Mobile menu ---------------- */
   var menuToggle = document.getElementById("menuToggle");
@@ -145,47 +124,49 @@
     }, 150);
   });
 
-  /* ---------------- Contact form ---------------- */
+  /* ---------------- Contact form (only present on contacto.html) ---------------- */
   var form = document.getElementById("contactForm");
   var status = document.getElementById("formStatus");
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    status.classList.remove("error");
+  if (form && status) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      status.classList.remove("error");
 
-    var name = form.name.value.trim();
-    var email = form.email.value.trim();
-    var message = form.message.value.trim();
-    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      var name = form.name.value.trim();
+      var email = form.email.value.trim();
+      var message = form.message.value.trim();
+      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!name || !email || !message) {
-      status.textContent = "Por favor preencha todos os campos obrigatórios.";
-      status.classList.add("error");
-      return;
-    }
-    if (!emailPattern.test(email)) {
-      status.textContent = "Por favor insira um email válido.";
-      status.classList.add("error");
-      return;
-    }
+      if (!name || !email || !message) {
+        status.textContent = "Por favor preencha todos os campos obrigatórios.";
+        status.classList.add("error");
+        return;
+      }
+      if (!emailPattern.test(email)) {
+        status.textContent = "Por favor insira um email válido.";
+        status.classList.add("error");
+        return;
+      }
 
-    /* ------------------------------------------------------------------
-       NOTE FOR EDITING:
-       This form currently only validates and shows a confirmation message.
-       To actually receive messages, connect it to a backend or a service
-       such as Formspree, EmailJS, or your own API endpoint. Example with
-       Formspree:
+      /* ------------------------------------------------------------------
+         NOTE FOR EDITING:
+         This form currently only validates and shows a confirmation message.
+         To actually receive messages, connect it to a backend or a service
+         such as Formspree, EmailJS, or your own API endpoint. Example with
+         Formspree:
 
-       fetch("https://formspree.io/f/YOUR_FORM_ID", {
-         method: "POST",
-         headers: { "Accept": "application/json" },
-         body: new FormData(form)
-       }).then(...);
-       ------------------------------------------------------------------ */
+         fetch("https://formspree.io/f/YOUR_FORM_ID", {
+           method: "POST",
+           headers: { "Accept": "application/json" },
+           body: new FormData(form)
+         }).then(...);
+         ------------------------------------------------------------------ */
 
-    status.textContent = "Mensagem enviada com sucesso. Entraremos em contacto em breve.";
-    form.reset();
-  });
+      status.textContent = "Mensagem enviada com sucesso. Entraremos em contacto em breve.";
+      form.reset();
+    });
+  }
 
   /* ---------------- Footer year ---------------- */
   var yearEl = document.getElementById("year");
