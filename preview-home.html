@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Início — Loonmars Space Lab</title>
+<meta name="description" content="Loonmars Space Lab — startup moçambicana de investigação e inovação em sistemas espaciais e arquitetura.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   LOONMARS SPACE LAB — STYLES
+   Design tokens are declared as CSS variables in :root — edit values there
+   to re-theme the whole site.
+   ========================================================================== */
+
+:root {
+  /* Color */
+  --void: #0a0e1a;         /* page background — night sky */
+  --deep: #10182b;         /* raised panels */
+  --panel: #151f38;        /* cards */
+  --line: rgba(243, 245, 249, 0.09);
+  --ochre: #e0923c;        /* signature accent — sunset over the savanna */
+  --ochre-soft: rgba(224, 146, 60, 0.14);
+  --signal: #49c9a0;       /* telemetry green — nods to the national flag */
+  --signal-soft: rgba(73, 201, 160, 0.14);
+  --star: #f3f5f9;         /* primary text on dark */
+  --muted: #94a0ba;        /* secondary text */
+  --muted-2: #5d6883;
+
+  /* Type — single clean sans-serif used everywhere, per site preference */
+  --font-display: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Layout */
+  --max-w: 1180px;
+  --pad: clamp(1.25rem, 4vw, 3rem);
+  --radius: 14px;
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--void);
+  color: var(--star);
+  font-family: var(--font-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: var(--font-display); margin: 0; font-weight: 600; }
+p { margin: 0; }
+a { color: inherit; text-decoration: none; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+button { font-family: inherit; }
+img { max-width: 100%; display: block; }
+
+.mono {
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Starfield canvas ---------- */
+#starfield {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* ---------- Focus ---------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(10, 14, 26, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+.site-header.scrolled {
+  border-bottom-color: var(--line);
+  background: rgba(10, 14, 26, 0.92);
+}
+.header-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0.9rem var(--pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+.brand-mark { color: var(--ochre); display: flex; }
+.brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+.brand-name {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.92rem;
+  letter-spacing: 0.12em;
+}
+.brand-sub {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  color: var(--muted);
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.9rem;
+}
+.main-nav a {
+  font-size: 0.88rem;
+  color: var(--muted);
+  transition: color 0.2s ease;
+  position: relative;
+}
+.main-nav a:hover,
+.main-nav a.active { color: var(--star); }
+.main-nav a[data-nav]:not(.nav-cta)::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -6px;
+  width: 0;
+  height: 1px;
+  background: var(--signal);
+  transition: width 0.25s ease;
+}
+.main-nav a[data-nav]:not(.nav-cta):hover::after,
+.main-nav a[data-nav].active::after { width: 100%; }
+
+.nav-cta {
+  border: 1px solid var(--line);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  color: var(--star) !important;
+}
+.nav-cta:hover { border-color: var(--signal); background: var(--signal-soft); }
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 0.4rem;
+  cursor: pointer;
+}
+.menu-toggle span {
+  width: 22px; height: 2px;
+  background: var(--star);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: 6.5rem var(--pad) 4rem;
+  overflow: hidden;
+}
+.hero-inner {
+  max-width: 640px;
+  position: relative;
+  z-index: 2;
+}
+.eyebrow {
+  color: var(--signal);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+.hero-title {
+  font-size: clamp(2.4rem, 5.4vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.4rem;
+}
+.hero-lede {
+  color: var(--muted);
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  max-width: 46ch;
+  margin-bottom: 2.2rem;
+}
+.hero-actions { display: flex; gap: 0.9rem; flex-wrap: wrap; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.btn-primary { background: var(--ochre); color: #1a0f04; }
+.btn-primary:hover { transform: translateY(-2px); background: #ec9d4c; }
+.btn-ghost { border-color: var(--line); color: var(--star); }
+.btn-ghost:hover { border-color: var(--signal); background: var(--signal-soft); transform: translateY(-2px); }
+.btn-full { width: 100%; }
+
+/* Hero orbit signature */
+.hero-orbit {
+  position: absolute;
+  right: -6%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(60vw, 640px);
+  aspect-ratio: 1;
+  z-index: 1;
+  opacity: 0.9;
+}
+.orbit-svg { width: 100%; height: 100%; }
+.orbit-ring { fill: none; stroke: var(--line); stroke-width: 1; }
+.origin-marker circle:first-child { animation: pulseDot 2.4s ease-in-out infinite; }
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.orbit-label { font-size: 9px; fill: var(--muted-2); letter-spacing: 0.08em; }
+.trajectory-path {
+  stroke: var(--ochre);
+  stroke-width: 1.4;
+  stroke-dasharray: 4 5;
+  opacity: 0.75;
+}
+.satellite {
+  offset-path: path("M 260 355 C 210 300, 150 210, 175 130 C 190 85, 230 65, 260 65");
+  animation: rideTrajectory 7s ease-in-out infinite;
+  color: var(--star);
+}
+@keyframes rideTrajectory {
+  0%   { offset-distance: 0%; }
+  50%  { offset-distance: 100%; }
+  100% { offset-distance: 0%; }
+}
+@supports not (offset-path: path("M0 0")) {
+  .satellite { animation: none; transform: translate(260px, 210px); }
+}
+
+.scroll-cue {
+  position: absolute;
+  bottom: 2.2rem;
+  left: var(--pad);
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.66rem;
+  color: var(--muted-2);
+  z-index: 2;
+}
+.scroll-line { width: 32px; height: 1px; background: var(--muted-2); position: relative; overflow: hidden; }
+.scroll-line::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: var(--signal);
+  animation: scrollLine 2.2s ease-in-out infinite;
+}
+@keyframes scrollLine {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+
+/* ---------- Page header (sub-pages) ---------- */
+.page-header {
+  position: relative;
+  z-index: 1;
+  padding: clamp(7.5rem, 14vw, 10.5rem) 0 clamp(2.5rem, 5vw, 3.5rem);
+}
+.big-title {
+  font-size: clamp(2rem, 4.6vw, 3.2rem);
+  max-width: 20ch;
+  line-height: 1.1;
+}
+
+/* ---------- Link arrow ---------- */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--signal);
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: gap 0.2s ease;
+}
+.link-arrow:hover { gap: 0.7rem; }
+
+/* ---------- CTA band ---------- */
+.cta-band { padding-top: 0; }
+.cta-inner {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  background: var(--deep);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: clamp(2.4rem, 6vw, 4rem) clamp(1.5rem, 5vw, 3rem);
+}
+.cta-inner .section-title { max-width: 24ch; }
+.cta-inner .btn + .btn { margin-left: 0.6rem; }
+
+/* ---------- Áreas cards as links ---------- */
+a.area-card { display: block; cursor: pointer; }
+
+/* ---------- Sections ---------- */
+.section {
+  position: relative;
+  z-index: 1;
+  padding: clamp(4rem, 8vw, 7rem) 0;
+}
+.section-alt { background: linear-gradient(180deg, transparent, rgba(255,255,255,0.015) 8%, rgba(255,255,255,0.015) 92%, transparent); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.section-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad); }
+.section-title {
+  font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+  line-height: 1.15;
+  max-width: 18ch;
+  margin-bottom: 1.1rem;
+}
+.body-text { color: var(--muted); font-size: 1.02rem; max-width: 62ch; margin-bottom: 1.1rem; }
+.body-text:last-child { margin-bottom: 0; }
+.max-60 { max-width: 60ch; margin-bottom: 2.6rem; }
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+/* Reveal-on-scroll */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.in-view { opacity: 1; transform: translateY(0); }
+
+/* Stat panel */
+.stat-panel {
+  background: var(--deep);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.6rem;
+  display: grid;
+  gap: 1.1rem;
+}
+.stat-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--line);
+}
+.stat-row:last-child { border-bottom: none; padding-bottom: 0; }
+.stat-value { color: var(--ochre); font-size: 1.05rem; font-weight: 600; }
+.stat-label { color: var(--muted); font-size: 0.86rem; text-align: right; }
+
+/* Card grid — Áreas de I&D */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.1rem;
+}
+.area-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.6rem;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+.area-card:hover { transform: translateY(-4px); border-color: rgba(73,201,160,0.35); }
+.area-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  color: var(--signal);
+  background: var(--signal-soft);
+  padding: 0.28rem 0.6rem;
+  border-radius: 999px;
+  margin-bottom: 0.9rem;
+}
+.area-card h3 { font-size: 1.15rem; margin-bottom: 0.55rem; }
+.area-card p { color: var(--muted); font-size: 0.93rem; }
+
+/* Process list */
+.process-list {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+.process-step {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 1.6rem;
+  padding: 1.7rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.process-num { color: var(--ochre); font-size: 1rem; padding-top: 0.15rem; }
+.process-step h3 { font-size: 1.15rem; margin-bottom: 0.4rem; }
+.process-step p { color: var(--muted); font-size: 0.95rem; max-width: 60ch; }
+
+/* Program cards */
+.program-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.1rem;
+}
+.program-card {
+  background: var(--deep);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.6rem;
+}
+.program-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+  flex-wrap: wrap;
+}
+.program-head h3 { font-size: 1.1rem; }
+.status-tag {
+  font-size: 0.66rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.status-research { background: var(--signal-soft); color: var(--signal); }
+.status-concept { background: rgba(148,160,186,0.15); color: var(--muted); }
+.status-prototype { background: var(--ochre-soft); color: var(--ochre); }
+.program-card p { color: var(--muted); font-size: 0.93rem; }
+
+/* Team */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.1rem;
+}
+.team-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.6rem;
+  text-align: center;
+}
+.avatar {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--signal-soft);
+  color: var(--signal);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem;
+  margin: 0 auto 1rem;
+}
+.team-card h3 { font-size: 1.02rem; margin-bottom: 0.3rem; }
+.team-role { color: var(--muted); font-size: 0.85rem; }
+
+/* Contact */
+.contact-list { display: grid; gap: 0.9rem; margin: 1.6rem 0; }
+.contact-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.86rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+.contact-list li span:first-child { color: var(--muted-2); }
+.contact-list a:hover { color: var(--signal); }
+.social-row { display: flex; gap: 1.4rem; }
+.social-row a { color: var(--muted); font-size: 0.88rem; transition: color 0.2s ease; }
+.social-row a:hover { color: var(--signal); }
+
+.contact-form {
+  background: var(--deep);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(1.4rem, 3vw, 2rem);
+  display: grid;
+  gap: 1.1rem;
+}
+.form-row { display: grid; gap: 0.45rem; }
+.form-row label { font-size: 0.8rem; color: var(--muted); }
+.form-row input,
+.form-row select,
+.form-row textarea {
+  background: var(--void);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.75rem 0.9rem;
+  color: var(--star);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  resize: vertical;
+  transition: border-color 0.2s ease;
+}
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus { border-color: var(--signal); }
+.form-status { font-size: 0.85rem; color: var(--signal); min-height: 1.2em; }
+.form-status.error { color: #e0665c; }
+
+/* ---------- Footer ---------- */
+.site-footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--line);
+  padding: 2.6rem 0;
+}
+.footer-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.4rem;
+}
+.footer-brand { display: flex; flex-direction: column; line-height: 1.2; }
+.footer-nav { display: flex; flex-wrap: wrap; gap: 1.3rem; }
+.footer-nav a { color: var(--muted); font-size: 0.85rem; }
+.footer-nav a:hover { color: var(--star); }
+.footer-copy { color: var(--muted-2); font-size: 0.72rem; }
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 920px) {
+  .hero-orbit { opacity: 0.35; width: 80vw; right: -20%; }
+  .grid-2 { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 760px) {
+  .main-nav {
+    position: fixed;
+    top: 0; right: 0;
+    height: 100svh;
+    width: min(78vw, 320px);
+    background: var(--deep);
+    border-left: 1px solid var(--line);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1.6rem;
+    padding: 2rem;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+  .main-nav.open { transform: translateX(0); }
+  .main-nav a { font-size: 1.05rem; }
+  .nav-cta { align-self: flex-start; }
+  .menu-toggle { display: flex; }
+
+  .hero { padding-top: 6rem; }
+  .hero-orbit { display: none; }
+  .process-step { grid-template-columns: 44px 1fr; gap: 1rem; }
+}
+
+@media (max-width: 520px) {
+  .header-inner { padding: 0.75rem var(--pad); }
+  .brand-sub { display: none; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .stat-row { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+  .stat-label { text-align: left; }
+}
+
+</style>
+</head>
+<body>
+
+<canvas id="starfield" aria-hidden="true"></canvas>
+
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="30" height="30">
+          <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+          <ellipse cx="20" cy="20" rx="18" ry="7" fill="none" stroke="currentColor" stroke-width="1.2"/>
+          <circle cx="20" cy="20" r="4" fill="currentColor"/>
+        </svg>
+      </span>
+      <span class="brand-text">
+        <span class="brand-name">LOONMARS</span>
+        <span class="brand-sub">SPACE LAB</span>
+      </span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="index.html" class="active" data-nav>Início</a>
+      <a href="missao.html" data-nav>Missão</a>
+      <a href="areas.html" data-nav>Áreas de I&D</a>
+      <a href="processo.html" data-nav>Processo</a>
+      <a href="programas.html" data-nav>Programas</a>
+      <a href="equipa.html" data-nav>Equipa</a>
+      <a href="contacto.html" class="nav-cta" data-nav>Contacto</a>
+    </nav>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainNav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <p class="eyebrow mono">Maputo, Moçambique — Fundada em 2025</p>
+    <h1 class="hero-title">
+      Do solo moçambicano<br> à órbita terrestre.
+    </h1>
+    <p class="hero-lede">
+      A Loonmars Space Lab investiga, desenha e constrói sistemas de tecnologia espacial e
+      arquitetura aeroespacial — para colocar Moçambique no mapa da exploração do espaço.
+    </p>
+    <div class="hero-actions">
+      <a href="missao.html" class="btn btn-primary">Conhecer a missão</a>
+      <a href="contacto.html" class="btn btn-ghost">Fale connosco</a>
+    </div>
+  </div>
+
+  <div class="hero-orbit" aria-hidden="true">
+    <svg viewBox="0 0 520 520" class="orbit-svg">
+      <defs>
+        <radialGradient id="planetGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="var(--ochre)" stop-opacity="0.35"/>
+          <stop offset="100%" stop-color="var(--ochre)" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <circle cx="260" cy="260" r="230" fill="url(#planetGlow)"/>
+      <ellipse cx="260" cy="260" rx="200" ry="200" class="orbit-ring ring-1"/>
+      <ellipse cx="260" cy="260" rx="150" ry="150" class="orbit-ring ring-2"/>
+      <ellipse cx="260" cy="260" rx="95" ry="95" class="orbit-ring ring-3"/>
+
+      <g class="origin-marker">
+        <circle cx="260" cy="355" r="4" fill="var(--signal)"/>
+        <circle cx="260" cy="355" r="9" fill="none" stroke="var(--signal)" stroke-width="1" opacity="0.6"/>
+        <text x="272" y="359" class="orbit-label mono">MAPUTO</text>
+      </g>
+
+      <path id="trajectory" class="trajectory-path"
+            d="M 260 355 C 210 300, 150 210, 175 130 C 190 85, 230 65, 260 65"
+            fill="none"/>
+
+      <g class="satellite">
+        <circle r="5" fill="var(--star)"/>
+        <rect x="-9" y="-2" width="6" height="4" fill="var(--star)" opacity="0.8"/>
+        <rect x="3" y="-2" width="6" height="4" fill="var(--star)" opacity="0.8"/>
+      </g>
+
+      <circle cx="260" cy="65" r="3" fill="var(--star)" opacity="0.9"/>
+      <text x="272" y="69" class="orbit-label mono">ÓRBITA</text>
+    </svg>
+  </div>
+
+  <div class="scroll-cue mono" aria-hidden="true">
+    <span>DESLIZE</span>
+    <span class="scroll-line"></span>
+  </div>
+</section>
+
+<main>
+
+<section class="section" id="missao-teaser">
+  <div class="section-inner grid-2">
+    <div class="reveal">
+      <p class="eyebrow mono">001 — Missão</p>
+      <h2 class="section-title">
+        Investigação séria, aplicada a um propósito nacional.
+      </h2>
+      <p class="body-text">
+        Somos uma startup moçambicana dedicada à investigação, desenvolvimento e inovação em
+        sistemas de tecnologias espaciais e arquitetura. O nosso objectivo é claro: contribuir
+        para o avanço tecnológico do país e posicionar Moçambique no ecossistema global da
+        exploração espacial.
+      </p>
+      <a href="missao.html" class="link-arrow">Ler a missão completa →</a>
+    </div>
+
+    <div class="stat-panel reveal">
+      <div class="stat-row">
+        <span class="stat-value mono">2025</span>
+        <span class="stat-label">Ano de fundação</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-value mono">04</span>
+        <span class="stat-label">Áreas de investigação activas</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-value mono">MPT</span>
+        <span class="stat-label">Sede em Maputo, Moçambique</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-value mono">I&amp;D</span>
+        <span class="stat-label">Núcleo: investigação aplicada</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="section-inner">
+    <p class="eyebrow mono">002 — Áreas de I&amp;D</p>
+    <h2 class="section-title">Onde concentramos a nossa engenharia.</h2>
+    <p class="body-text max-60">
+      Quatro frentes de trabalho que se apoiam mutuamente: do satélite à estrutura que o
+      protege, do material que resiste ao calor à antena que recebe o seu sinal.
+    </p>
+
+    <div class="card-grid reveal">
+      <a class="area-card" href="areas.html">
+        <span class="area-tag mono">SIS · 01</span>
+        <h3>Sistemas de Satélites</h3>
+        <p>Nano e microsatélites, telemetria, controlo de atitude e comunicações.</p>
+      </a>
+      <a class="area-card" href="areas.html">
+        <span class="area-tag mono">ARQ · 02</span>
+        <h3>Arquitetura Espacial</h3>
+        <p>Habitats e estruturas para ambientes extremos, da órbita à superfície lunar.</p>
+      </a>
+      <a class="area-card" href="areas.html">
+        <span class="area-tag mono">MAT · 03</span>
+        <h3>Materiais Aeroespaciais</h3>
+        <p>Compósitos, resistência térmica e ensaios de durabilidade.</p>
+      </a>
+      <a class="area-card" href="areas.html">
+        <span class="area-tag mono">DAT · 04</span>
+        <h3>Estações Terrestres &amp; Dados</h3>
+        <p>Antenas, receção de sinal e processamento de dados de satélite.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-band">
+  <div class="section-inner cta-inner reveal">
+    <h2 class="section-title">Vamos construir isto juntos.</h2>
+    <p class="body-text max-60">
+      Investigadores, engenheiros, instituições e parceiros são bem-vindos a entrar em
+      contacto — para colaborações, investimento ou simples curiosidade.
+    </p>
+    <a href="contacto.html" class="btn btn-primary">Fale connosco</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-name">LOONMARS</span>
+      <span class="brand-sub">SPACE LAB</span>
+    </div>
+    <nav class="footer-nav">
+      <a href="missao.html">Missão</a>
+      <a href="areas.html">Áreas de I&amp;D</a>
+      <a href="processo.html">Processo</a>
+      <a href="programas.html">Programas</a>
+      <a href="equipa.html">Equipa</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+    <p class="footer-copy mono">© <span id="year"></span> Loonmars Space Lab — Maputo, Moçambique</p>
+  </div>
+</footer>
+
+<script>
+/* ==========================================================================
+   LOONMARS SPACE LAB — SCRIPT
+   ========================================================================== */
+
+(function () {
+  "use strict";
+
+  var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------------- Header shrink on scroll ----------------
+     The "active" nav link itself is set per-page directly in the HTML
+     (see the class="active" attribute on the current page's nav link),
+     since each page is now a separate file rather than an anchor target. */
+  var header = document.getElementById("siteHeader");
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll("[data-nav]"));
+
+  function onScroll() {
+    if (window.scrollY > 12) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  /* ---------------- Mobile menu ---------------- */
+  var menuToggle = document.getElementById("menuToggle");
+  var mainNav = document.getElementById("mainNav");
+
+  function closeMenu() {
+    mainNav.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+  }
+
+  menuToggle.addEventListener("click", function () {
+    var isOpen = mainNav.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  navLinks.forEach(function (link) {
+    link.addEventListener("click", closeMenu);
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeMenu();
+  });
+
+  /* ---------------- Scroll reveal ---------------- */
+  var revealEls = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window && !prefersReducedMotion) {
+    var revealObserver = new IntersectionObserver(
+      function (entries, obs) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    revealEls.forEach(function (el) { revealObserver.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add("in-view"); });
+  }
+
+  /* ---------------- Starfield canvas ---------------- */
+  var canvas = document.getElementById("starfield");
+  var ctx = canvas.getContext("2d");
+  var stars = [];
+  var starCount = 140;
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    canvas.style.width = window.innerWidth + "px";
+    canvas.style.height = window.innerHeight + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function makeStars() {
+    stars = [];
+    for (var i = 0; i < starCount; i++) {
+      stars.push({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        r: Math.random() * 1.1 + 0.2,
+        baseAlpha: Math.random() * 0.6 + 0.2,
+        phase: Math.random() * Math.PI * 2,
+        speed: Math.random() * 0.015 + 0.005
+      });
+    }
+  }
+
+  function drawStars(time) {
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    for (var i = 0; i < stars.length; i++) {
+      var s = stars[i];
+      var twinkle = prefersReducedMotion ? 0 : Math.sin(time * s.speed + s.phase) * 0.35;
+      var alpha = Math.max(0, Math.min(1, s.baseAlpha + twinkle));
+      ctx.beginPath();
+      ctx.fillStyle = "rgba(243, 245, 249, " + alpha + ")";
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    if (!prefersReducedMotion) {
+      requestAnimationFrame(drawStars);
+    }
+  }
+
+  resizeCanvas();
+  makeStars();
+  requestAnimationFrame(drawStars);
+
+  var resizeTimer;
+  window.addEventListener("resize", function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      resizeCanvas();
+      makeStars();
+      if (prefersReducedMotion) drawStars(0);
+    }, 150);
+  });
+
+  /* ---------------- Contact form (only present on contacto.html) ---------------- */
+  var form = document.getElementById("contactForm");
+  var status = document.getElementById("formStatus");
+
+  if (form && status) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      status.classList.remove("error");
+
+      var name = form.name.value.trim();
+      var email = form.email.value.trim();
+      var message = form.message.value.trim();
+      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!name || !email || !message) {
+        status.textContent = "Por favor preencha todos os campos obrigatórios.";
+        status.classList.add("error");
+        return;
+      }
+      if (!emailPattern.test(email)) {
+        status.textContent = "Por favor insira um email válido.";
+        status.classList.add("error");
+        return;
+      }
+
+      /* ------------------------------------------------------------------
+         NOTE FOR EDITING:
+         This form currently only validates and shows a confirmation message.
+         To actually receive messages, connect it to a backend or a service
+         such as Formspree, EmailJS, or your own API endpoint. Example with
+         Formspree:
+
+         fetch("https://formspree.io/f/YOUR_FORM_ID", {
+           method: "POST",
+           headers: { "Accept": "application/json" },
+           body: new FormData(form)
+         }).then(...);
+         ------------------------------------------------------------------ */
+
+      status.textContent = "Mensagem enviada com sucesso. Entraremos em contacto em breve.";
+      form.reset();
+    });
+  }
+
+  /* ---------------- Footer year ---------------- */
+  var yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+})();
+
+</script>
+</body>
+</html>
