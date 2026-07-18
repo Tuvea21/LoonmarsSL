@@ -109,21 +109,11 @@ select:focus-visible {
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
 }
-.brand-mark { color: var(--ochre); display: flex; }
-.brand-text { display: flex; flex-direction: column; line-height: 1.1; }
-.brand-name {
-  font-family: var(--font-mono);
-  font-weight: 600;
-  font-size: 0.92rem;
-  letter-spacing: 0.12em;
-}
-.brand-sub {
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.22em;
-  color: var(--muted);
+.brand-logo {
+  height: 32px;
+  width: auto;
+  display: block;
 }
 
 .main-nav {
@@ -552,6 +542,7 @@ a.area-card { display: block; cursor: pointer; }
   gap: 1.4rem;
 }
 .footer-brand { display: flex; flex-direction: column; line-height: 1.2; }
+.footer-logo { height: 26px; width: auto; opacity: 0.9; }
 .footer-nav { display: flex; flex-wrap: wrap; gap: 1.3rem; }
 .footer-nav a { color: var(--muted); font-size: 0.85rem; }
 .footer-nav a:hover { color: var(--star); }
@@ -593,7 +584,7 @@ a.area-card { display: block; cursor: pointer; }
 
 @media (max-width: 520px) {
   .header-inner { padding: 0.75rem var(--pad); }
-  .brand-sub { display: none; }
+  .brand-logo { height: 26px; }
   .hero-actions { flex-direction: column; align-items: stretch; }
   .stat-row { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
   .stat-label { text-align: left; }
