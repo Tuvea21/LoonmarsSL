@@ -111,7 +111,7 @@ select:focus-visible {
   align-items: center;
 }
 .brand-logo {
-  height: 32px;
+  height: 82px; /* Logo da NAV */
   width: auto;
   display: block;
 }
@@ -584,7 +584,7 @@ a.area-card { display: block; cursor: pointer; }
 
 @media (max-width: 520px) {
   .header-inner { padding: 0.75rem var(--pad); }
-  .brand-logo { height: 26px; }
+  .brand-logo { height: 66px; } /* Logo da NAV Responsiva */
   .hero-actions { flex-direction: column; align-items: stretch; }
   .stat-row { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
   .stat-label { text-align: left; }
