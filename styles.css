@@ -18,10 +18,10 @@
   --muted: #94a0ba;        /* secondary text */
   --muted-2: #5d6883;
 
-  /* Type */
-  --font-display: "Fraunces", Georgia, serif;
-  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: "JetBrains Mono", "SFMono-Regular", Menlo, monospace;
+  /* Type — single clean sans-serif used everywhere, per site preference */
+  --font-display: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Layout */
   --max-w: 1180px;
@@ -47,7 +47,11 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 button { font-family: inherit; }
 img { max-width: 100%; display: block; }
 
-.mono { font-family: var(--font-mono); letter-spacing: 0.04em; }
+.mono {
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -290,6 +294,49 @@ select:focus-visible {
   50% { transform: translateX(0); }
   100% { transform: translateX(100%); }
 }
+
+/* ---------- Page header (sub-pages) ---------- */
+.page-header {
+  position: relative;
+  z-index: 1;
+  padding: clamp(7.5rem, 14vw, 10.5rem) 0 clamp(2.5rem, 5vw, 3.5rem);
+}
+.big-title {
+  font-size: clamp(2rem, 4.6vw, 3.2rem);
+  max-width: 20ch;
+  line-height: 1.1;
+}
+
+/* ---------- Link arrow ---------- */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--signal);
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: gap 0.2s ease;
+}
+.link-arrow:hover { gap: 0.7rem; }
+
+/* ---------- CTA band ---------- */
+.cta-band { padding-top: 0; }
+.cta-inner {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  background: var(--deep);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: clamp(2.4rem, 6vw, 4rem) clamp(1.5rem, 5vw, 3rem);
+}
+.cta-inner .section-title { max-width: 24ch; }
+.cta-inner .btn + .btn { margin-left: 0.6rem; }
+
+/* ---------- Áreas cards as links ---------- */
+a.area-card { display: block; cursor: pointer; }
 
 /* ---------- Sections ---------- */
 .section {
