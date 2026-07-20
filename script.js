@@ -188,6 +188,38 @@
     });
   }
 
+  /* ---------------- Newsletter form (only present on newsletter.html) ---------------- */
+  var nlForm = document.getElementById("newsletterForm");
+  var nlStatus = document.getElementById("newsletterStatus");
+
+  if (nlForm && nlStatus) {
+    nlForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      nlStatus.classList.remove("error");
+
+      var name = nlForm.name.value.trim();
+      var email = nlForm.email.value.trim();
+      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!name || !email) {
+        nlStatus.textContent = "Por favor preencha o nome e o email.";
+        nlStatus.classList.add("error");
+        return;
+      }
+      if (!emailPattern.test(email)) {
+        nlStatus.textContent = "Por favor insira um email válido.";
+        nlStatus.classList.add("error");
+        return;
+      }
+
+      /* Same note as the contact form: connect this to Formspree, EmailJS,
+         Mailchimp, or your own API endpoint to actually collect subscribers. */
+
+      nlStatus.textContent = "Subscrição confirmada. Bem-vindo(a) a bordo!";
+      nlForm.reset();
+    });
+  }
+
   /* ---------------- Footer year ---------------- */
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
