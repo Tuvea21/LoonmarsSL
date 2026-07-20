@@ -453,9 +453,9 @@ a.area-card { display: block; cursor: pointer; }
    IMPORTANT: always use "background-image:" here, never the "background:"
    shorthand — the shorthand resets background-size/position/repeat/color
    back to their defaults and your photo will stop fitting the card. */
-.news-photo-1 { background-image: radial-gradient(circle at 30% 30%, #3a4a72, #10182b 70%); }
-.news-photo-2 { background-image: radial-gradient(circle at 70% 40%, #3d6f5c, #10182b 70%); }
-.news-photo-3 { background-image: radial-gradient(circle at 40% 60%, #7a4f28, #10182b 70%); }
+.news-photo-1 { background-image: url("images/n1.jpeg"); }
+.news-photo-2 { background-image: url("images/n2.jpeg"); }
+.news-photo-3 { background-image: url("images/n3.jpeg"); }
 .news-body { padding: 1.4rem 1.5rem 1.6rem; }
 .news-date { color: var(--ochre); font-size: 0.72rem; display: block; margin-bottom: 0.6rem; }
 .news-card h3 { font-size: 1.05rem; margin-bottom: 0.5rem; line-height: 1.3; }
