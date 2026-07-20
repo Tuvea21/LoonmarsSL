@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Newsletter e Eventos — Loonmars Space Lab</title>
+<meta name="description" content="Subscreva a newsletter da Loonmars Space Lab e fique a par dos próximos eventos e lançamentos.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="logo.png" type="image/png">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="bg-aura bg-aura-ochre" aria-hidden="true"></div>
+<div class="bg-aura bg-aura-signal" aria-hidden="true"></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="index.html" class="brand">
+      <img src="logo.png" alt="Loonmars Space Lab" class="brand-logo">
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="index.html" data-nav>Início</a>
+      <a href="sobre.html" data-nav>Sobre à Loonmars</a>
+      <a href="projectos.html" data-nav>Projectos</a>
+      <a href="midia.html">Mídia</a>
+      <a href="newsletter.html" class="active">Newsletter e eventos</a>
+      <a href="equipa.html" data-nav>Equipa</a>
+      <a href="contacto.html" class="nav-cta" data-nav>Contacto</a>
+    </nav>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainNav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="page-header">
+  <div class="section-inner">
+    <p class="eyebrow mono">Newsletter e Eventos</p>
+    <h1 class="section-title big-title reveal in-view">Não perca os próximos lançamentos.</h1>
+    <p class="body-text max-60 reveal in-view">
+      Subscreva para receber, por email, as novidades dos nossos programas, convites para
+      eventos e oportunidades de colaboração — sem spam, só o essencial.
+    </p>
+  </div>
+</section>
+
+<main>
+
+<section class="section">
+  <div class="section-inner grid-2">
+    <div class="reveal">
+      <h2 class="section-title">O que vai receber</h2>
+      <ul class="perk-list">
+        <li>Atualizações de programas — Kutchinga-1, Estação Terrestre Maputo e outros.</li>
+        <li>Convites para eventos, palestras e demonstrações abertas ao público.</li>
+        <li>Oportunidades de colaboração para investigadores, estudantes e parceiros.</li>
+        <li>Sem spam — apenas um email quando houver algo que valha a pena partilhar.</li>
+      </ul>
+    </div>
+
+    <form class="contact-form reveal" id="newsletterForm" novalidate>
+      <div class="form-row">
+        <label for="nl-name">Nome</label>
+        <input type="text" id="nl-name" name="name" required autocomplete="name" placeholder="O seu nome">
+      </div>
+      <div class="form-row">
+        <label for="nl-email">Email</label>
+        <input type="email" id="nl-email" name="email" required autocomplete="email" placeholder="voce@exemplo.com">
+      </div>
+      <button type="submit" class="btn btn-primary btn-full">Subscrever</button>
+      <p class="form-status" id="newsletterStatus" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="section-inner">
+    <p class="eyebrow mono">Próximos eventos</p>
+    <h2 class="section-title">Agenda</h2>
+    <p class="body-text max-60">
+      Datas e locais são adicionados aqui à medida que forem confirmados — substitua estes
+      espaços pelos seus eventos reais.
+    </p>
+
+    <div class="program-list reveal">
+      <article class="program-card">
+        <div class="program-head">
+          <h3>Demonstração Aberta — Estação Terrestre</h3>
+          <span class="status-tag status-concept mono">Data a confirmar</span>
+        </div>
+        <p>Apresentação pública do protótipo da estação terrestre em Maputo, com receção
+        ao vivo de dados de satélite.</p>
+      </article>
+
+      <article class="program-card">
+        <div class="program-head">
+          <h3>Webinar — Arquitetura para o Espaço</h3>
+          <span class="status-tag status-concept mono">Data a confirmar</span>
+        </div>
+        <p>Sessão aberta sobre os desafios de desenhar estruturas para ambientes
+        extremos, com a nossa equipa de arquitetura espacial.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="logo.png" alt="Loonmars Space Lab" class="footer-logo">
+    </div>
+    <nav class="footer-nav">
+      <a href="sobre.html">Sobre à Loonmars</a>
+      <a href="projectos.html">Projectos e Actividades</a>
+      <a href="midia.html">Mídia</a>
+      <a href="newsletter.html">Newsletter e eventos</a>
+      <a href="equipa.html">Equipa</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+    <p class="footer-copy mono">© <span id="year"></span> Loonmars Space Lab</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
