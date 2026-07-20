@@ -9,13 +9,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="icon" href="logo2.png" type="image/png">
+<link rel="icon" href="logo.png" type="image/png">
 
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <canvas id="starfield" aria-hidden="true"></canvas>
+
+<!-- Decorative ambient glow — purely visual, sits behind all content -->
+<div class="bg-aura bg-aura-ochre" aria-hidden="true"></div>
+<div class="bg-aura bg-aura-signal" aria-hidden="true"></div>
 
 <header class="site-header" id="siteHeader">
   <div class="header-inner">
@@ -137,40 +141,64 @@
 
 <section class="section section-alt">
   <div class="section-inner">
-    <p class="eyebrow mono">002 — Newsletter e eventos</p>
-    <h2 class="section-title">...</h2>
+    <p class="eyebrow mono">002 — Últimas notícias</p>
+    <h2 class="section-title">O que estamos a construir, em tempo real.</h2>
     <p class="body-text max-60">
-      ...
+      Atualizações do laboratório — resultados de investigação, protótipos e marcos dos
+      nossos programas.
     </p>
 
-    <div class="card-grid reveal">
-      <a class="area-card" href="areas.html">
-        <span class="area-tag mono">SIS · 01</span>
-        <h3>Sistemas de Satélites</h3>
-        <p>Nano e microsatélites, telemetria, controlo de atitude e comunicações.</p>
+    <!-- PLACEHOLDER: substitua a imagem de fundo (background-image inline) e o texto
+         de cada .news-card pelas suas notícias e fotos reais. -->
+    <div class="news-grid reveal">
+      <a class="news-card" href="midia.html">
+        <div class="news-photo news-photo-1" role="img" aria-label="Equipa Loonmars em laboratório"></div>
+        <div class="news-body">
+          <span class="news-date mono">15 Jul 2026</span>
+          <h3>Kutchinga-1 avança para fase de estudo de viabilidade</h3>
+          <p>O nosso primeiro nanosatélite de observação da Terra entra na fase seguinte de investigação.</p>
+        </div>
       </a>
-      <a class="area-card" href="areas.html">
-        <span class="area-tag mono">ARQ · 02</span>
-        <h3>Arquitetura Espacial</h3>
-        <p>Habitats e estruturas para ambientes extremos, da órbita à superfície lunar.</p>
+      <a class="news-card" href="midia.html">
+        <div class="news-photo news-photo-2" role="img" aria-label="Protótipo de estação terrestre"></div>
+        <div class="news-body">
+          <span class="news-date mono">02 Jun 2026</span>
+          <h3>Primeiro protótipo da Estação Terrestre Maputo</h3>
+          <p>Testes iniciais de receção de sinal já em curso no nosso laboratório em Maputo.</p>
+        </div>
       </a>
-      <a class="area-card" href="areas.html">
-        <span class="area-tag mono">MAT · 03</span>
-        <h3>Materiais Aeroespaciais</h3>
-        <p>Compósitos, resistência térmica e ensaios de durabilidade.</p>
-      </a>
-      <a class="area-card" href="areas.html">
-        <span class="area-tag mono">DAT · 04</span>
-        <h3>Estações Terrestres &amp; Dados</h3>
-        <p>Antenas, receção de sinal e processamento de dados de satélite.</p>
+      <a class="news-card" href="midia.html">
+        <div class="news-photo news-photo-3" role="img" aria-label="Loonmars em conferência espacial"></div>
+        <div class="news-body">
+          <span class="news-date mono">20 Mai 2026</span>
+          <h3>Loonmars junta-se à rede africana de startups espaciais</h3>
+          <p>Uma nova parceria para partilhar investigação e acelerar o acesso ao espaço em África.</p>
+        </div>
       </a>
     </div>
+
+    <a href="midia.html" class="link-arrow">Ver todas as notícias e mídia →</a>
+  </div>
+</section>
+
+<section class="section newsletter-band">
+  <div class="section-inner newsletter-inner reveal">
+    <div>
+      <p class="eyebrow mono">003 — Newsletter e eventos</p>
+      <h2 class="section-title">Não perca os próximos lançamentos.</h2>
+      <p class="body-text max-60">
+        Receba, por email, as novidades dos nossos programas, convites para eventos e
+        oportunidades de colaboração — sem spam, só o essencial.
+      </p>
+    </div>
+    <a href="newsletter.html" class="btn btn-primary">Subscrever a newsletter</a>
   </div>
 </section>
 
 <section class="section cta-band">
+
   <div class="section-inner cta-inner reveal">
-    <h2 class="section-title"></h2>
+    <h2 class="section-title">Vamos construir isto juntos.</h2>
     <p class="body-text max-60">
       Investigadores, engenheiros, instituições e parceiros são bem-vindos a entrar em
       contacto — para colaborações, investimento ou simples curiosidade.
