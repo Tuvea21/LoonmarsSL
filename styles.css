@@ -443,7 +443,7 @@ a.area-card { display: block; cursor: pointer; }
 }
 /* PLACEHOLDER GRADIENTS — replace with real photos, e.g.:
    .news-photo-1 { background-image: url("images/noticia-1.jpg"); } */
-.news-photo-1 { background: radial-gradient(circle at 30% 30%, #3a4a72, #10182b 70%); }
+.news-photo-1 { background:url(""); }
 .news-photo-2 { background: radial-gradient(circle at 70% 40%, #3d6f5c, #10182b 70%); }
 .news-photo-3 { background: radial-gradient(circle at 40% 60%, #7a4f28, #10182b 70%); }
 .news-photo::after {
