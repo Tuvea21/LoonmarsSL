@@ -239,27 +239,27 @@
         quote: "A colaboração com a Loonmars trouxe uma perspectiva de engenharia séria e aplicada aos nossos projectos de investigação conjunta.",
         name: "Nome do Parceiro",
         role: "Instituição académica parceira",
-        initials: "NP",
-        photo: "images/n"
+        initials: "EM",
+        photo: "images/MIRANDA2.jpg"
       },
       {
         quote: "É raro ver uma equipa tão jovem a trabalhar com este nível de rigor técnico num campo tão exigente como o espacial.",
         name: "Nome do Investidor",
         role: "Parceiro de investimento",
-        initials: "NI",
+        initials: "FN",
         photo: "images/filipe-nyusi1.jpg"
       },
       {
         quote: "O trabalho da Loonmars na estação terrestre abriu portas para projectos de observação da Terra que antes pareciam distantes.",
         name: "Nome do Colaborador",
         role: "Colaborador de investigação",
-        initials: "NC",
-        photo: "images/testemunho-3.jpg"
+        initials: "MC",
+        photo: "images/mia4.jpg"
       }
     ];
 
     var currentTestimonial = 0;
-
+    
     function renderTestimonial(i) {
       var t = TESTIMONIALS[i];
       testimonialText.textContent = t.quote;
