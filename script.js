@@ -237,22 +237,22 @@
     var TESTIMONIALS = [
       {
         quote: "A colaboração com a Loonmars trouxe uma perspectiva de engenharia séria e aplicada aos nossos projectos de investigação conjunta.",
-        name: "Nome do Parceiro",
-        role: "Instituição académica parceira",
+        name: "Emerson Miranda",
+        role: "Programa de televisão científica",
         initials: "EM",
         photo: "images/MIRANDA2.jpg"
       },
       {
         quote: "É raro ver uma equipa tão jovem a trabalhar com este nível de rigor técnico num campo tão exigente como o espacial.",
-        name: "Nome do Investidor",
-        role: "Parceiro de investimento",
+        name: "Felipe Nyusi",
+        role: "Antigo Presidente de Moçambique e defensor da ciência",
         initials: "FN",
         photo: "images/filipe-nyusi1.jpg"
       },
       {
         quote: "O trabalho da Loonmars na estação terrestre abriu portas para projectos de observação da Terra que antes pareciam distantes.",
-        name: "Nome do Colaborador",
-        role: "Colaborador de investigação",
+        name: "Mia Couto",
+        role: "Escritor e investigador moçambicano",
         initials: "MC",
         photo: "images/mia4.jpg"
       }
