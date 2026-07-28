@@ -152,7 +152,7 @@ select:focus-visible {
   align-items: center;
 }
 .brand-logo {
-  height: 46px;
+  height: 86px;
   width: auto;
   display: block;
   /* The source logo.png is white — inverted here so it reads as dark on
