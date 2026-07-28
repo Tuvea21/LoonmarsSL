@@ -228,26 +228,33 @@
   var testimonialRole = document.getElementById("testimonialRole");
   var testimonialInitials = document.getElementById("testimonialInitials");
   var testimonialDots = document.getElementById("testimonialDots");
+  var aboutPhoto = document.getElementById("aboutPhoto");
 
   if (testimonialText && testimonialDots) {
+    /* PLACEHOLDER CONTENT: edit each entry below — put the real photo path
+       in "photo" (e.g. "images/parceiro-1.jpg") to match each testimonial.
+       Leave "photo" empty ("") to keep the default gradient placeholder. */
     var TESTIMONIALS = [
       {
         quote: "A colaboração com a Loonmars trouxe uma perspectiva de engenharia séria e aplicada aos nossos projectos de investigação conjunta.",
         name: "Nome do Parceiro",
         role: "Instituição académica parceira",
-        initials: "NP"
+        initials: "NP",
+        photo: "images/n"
       },
       {
         quote: "É raro ver uma equipa tão jovem a trabalhar com este nível de rigor técnico num campo tão exigente como o espacial.",
         name: "Nome do Investidor",
         role: "Parceiro de investimento",
-        initials: "NI"
+        initials: "NI",
+        photo: "images/filipe-nyusi1.jpg"
       },
       {
         quote: "O trabalho da Loonmars na estação terrestre abriu portas para projectos de observação da Terra que antes pareciam distantes.",
         name: "Nome do Colaborador",
         role: "Colaborador de investigação",
-        initials: "NC"
+        initials: "NC",
+        photo: "images/testemunho-3.jpg"
       }
     ];
 
@@ -259,6 +266,13 @@
       testimonialName.textContent = t.name;
       testimonialRole.textContent = t.role;
       testimonialInitials.textContent = t.initials;
+      if (aboutPhoto && t.photo) {
+        aboutPhoto.style.opacity = "0";
+        setTimeout(function () {
+          aboutPhoto.style.backgroundImage = "url('" + t.photo + "')";
+          aboutPhoto.style.opacity = "1";
+        }, 200);
+      }
       Array.prototype.forEach.call(testimonialDots.children, function (dot, idx) {
         dot.classList.toggle("active", idx === i);
       });
