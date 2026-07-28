@@ -131,15 +131,12 @@ select:focus-visible {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.3s ease, background 0.3s ease;
+  background: #ffffff;
+  border-bottom: 1px solid var(--line);
+  transition: box-shadow 0.3s ease;
 }
 .site-header.scrolled {
-  border-bottom-color: var(--line);
-  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 2px 10px rgba(16,24,43,0.06);
 }
 .header-inner {
   max-width: var(--max-w);
@@ -734,8 +731,11 @@ a.area-card { display: block; cursor: pointer; }
 .about-photo {
   height: clamp(260px, 32vw, 400px);
   border-radius: var(--radius);
-  background:
-    radial-gradient(circle at 30% 30%, #3a4a72, #10182b 70%);
+  background-color: var(--deep);
+  background-image: url(images/neyma3.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   box-shadow: 0 1px 2px rgba(16,24,43,0.06), 0 12px 32px rgba(16,24,43,0.08);
 }
 .testimonial-quote { position: relative; margin: 1.6rem 0 1.2rem; }
@@ -809,9 +809,10 @@ a.area-card { display: block; cursor: pointer; }
 }
 /* PLACEHOLDER GRADIENTS — replace with real headshots, e.g.:
    .member-photo-1 { background-image: url("images/maria-smith.jpg"); } */
-.member-photo-1 { background-image: radial-gradient(circle at 40% 30%, #c9722a55, var(--deep) 75%); }
-.member-photo-2 { background-image: radial-gradient(circle at 60% 30%, #1f9c7255, var(--deep) 75%); }
-.member-photo-3 { background-image: radial-gradient(circle at 50% 30%, #10182b33, var(--deep) 75%); }
+.member-photo-1 { background-image: url(images/filipe-nyusi1.jpg); }
+.member-photo-2 { background-image: url(images/MIRANDA2.jpg); }
+.member-photo-3 { background-image: url(images/neyma3.jpg); }
+.member-photo-4 { background-image: url(images/mia4.jpg); }
 .member-body { padding: 1.4rem 1.5rem 1.6rem; }
 .member-name { font-size: 1.05rem; margin-bottom: 0.15rem; }
 .accent-ochre { color: var(--ochre); }
