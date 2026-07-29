@@ -144,6 +144,95 @@
     }, 150);
   });
 
+  /* ---------------- Hero network canvas (only present on index.html) ----
+     A lightweight "connected dots" animation for the dark hero background. */
+  var heroCanvas = document.getElementById("heroNetwork");
+  if (heroCanvas) {
+    var hctx = heroCanvas.getContext("2d");
+    var heroSection = heroCanvas.closest(".hero");
+    var hDpr = Math.min(window.devicePixelRatio || 1, 2);
+    var nodes = [];
+    var NODE_COUNT = 60;
+    var LINK_DIST = 140;
+
+    function resizeHero() {
+      var w = heroSection.clientWidth;
+      var h = heroSection.clientHeight;
+      heroCanvas.width = w * hDpr;
+      heroCanvas.height = h * hDpr;
+      heroCanvas.style.width = w + "px";
+      heroCanvas.style.height = h + "px";
+      hctx.setTransform(hDpr, 0, 0, hDpr, 0, 0);
+      return { w: w, h: h };
+    }
+
+    var heroDims = resizeHero();
+
+    function makeNodes() {
+      nodes = [];
+      for (var i = 0; i < NODE_COUNT; i++) {
+        nodes.push({
+          x: Math.random() * heroDims.w,
+          y: Math.random() * heroDims.h,
+          vx: (Math.random() - 0.5) * 0.25,
+          vy: (Math.random() - 0.5) * 0.25
+        });
+      }
+    }
+    makeNodes();
+
+    function drawHeroNetwork() {
+      hctx.clearRect(0, 0, heroDims.w, heroDims.h);
+
+      for (var i = 0; i < nodes.length; i++) {
+        var n = nodes[i];
+        n.x += n.vx;
+        n.y += n.vy;
+        if (n.x < 0 || n.x > heroDims.w) n.vx *= -1;
+        if (n.y < 0 || n.y > heroDims.h) n.vy *= -1;
+      }
+
+      for (var i = 0; i < nodes.length; i++) {
+        for (var j = i + 1; j < nodes.length; j++) {
+          var dx = nodes[i].x - nodes[j].x;
+          var dy = nodes[i].y - nodes[j].y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < LINK_DIST) {
+            hctx.strokeStyle = "rgba(79, 214, 255, " + (0.18 * (1 - dist / LINK_DIST)) + ")";
+            hctx.lineWidth = 1;
+            hctx.beginPath();
+            hctx.moveTo(nodes[i].x, nodes[i].y);
+            hctx.lineTo(nodes[j].x, nodes[j].y);
+            hctx.stroke();
+          }
+        }
+      }
+
+      for (var i = 0; i < nodes.length; i++) {
+        hctx.beginPath();
+        hctx.fillStyle = "rgba(79, 214, 255, 0.7)";
+        hctx.arc(nodes[i].x, nodes[i].y, 1.8, 0, Math.PI * 2);
+        hctx.fill();
+      }
+
+      if (!prefersReducedMotion) {
+        requestAnimationFrame(drawHeroNetwork);
+      }
+    }
+
+    requestAnimationFrame(drawHeroNetwork);
+
+    var heroResizeTimer;
+    window.addEventListener("resize", function () {
+      clearTimeout(heroResizeTimer);
+      heroResizeTimer = setTimeout(function () {
+        heroDims = resizeHero();
+        makeNodes();
+        if (prefersReducedMotion) drawHeroNetwork();
+      }, 150);
+    });
+  }
+
   /* ---------------- Contact form (only present on contacto.html) ---------------- */
   var form = document.getElementById("contactForm");
   var status = document.getElementById("formStatus");
@@ -237,22 +326,22 @@
     var TESTIMONIALS = [
       {
         quote: "A colaboração com a Loonmars trouxe uma perspectiva de engenharia séria e aplicada aos nossos projectos de investigação conjunta.",
-        name: "Emerson Miranda",
-        role: "Programa de televisão científica",
+        name: "Nome do Parceiro",
+        role: "Instituição académica parceira",
         initials: "EM",
         photo: "images/MIRANDA2.jpg"
       },
       {
         quote: "É raro ver uma equipa tão jovem a trabalhar com este nível de rigor técnico num campo tão exigente como o espacial.",
-        name: "Felipe Nyusi",
-        role: "Antigo Presidente de Moçambique e defensor da ciência",
+        name: "Nome do Investidor",
+        role: "Parceiro de investimento",
         initials: "FN",
         photo: "images/filipe-nyusi1.jpg"
       },
       {
         quote: "O trabalho da Loonmars na estação terrestre abriu portas para projectos de observação da Terra que antes pareciam distantes.",
-        name: "Mia Couto",
-        role: "Escritor e investigador moçambicano",
+        name: "Nome do Colaborador",
+        role: "Colaborador de investigação",
         initials: "MC",
         photo: "images/mia4.jpg"
       }
