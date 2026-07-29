@@ -152,7 +152,7 @@ select:focus-visible {
   align-items: center;
 }
 .brand-logo {
-  height: 46px;
+  height: 86px;
   width: auto;
   display: block;
   /* The source logo.png is white — inverted here so it reads as dark on
@@ -728,7 +728,7 @@ a.area-card { display: block; cursor: pointer; }
   gap: 1.4rem;
 }
 .footer-brand { display: flex; flex-direction: column; line-height: 1.2; }
-.footer-logo { height: 36px; width: auto; opacity: 0.85; filter: invert(1); }
+.footer-logo { height: 66px; width: auto; opacity: 0.85; filter: invert(1); }
 .footer-nav { display: flex; flex-wrap: wrap; gap: 1.3rem; }
 .footer-nav a { color: var(--muted); font-size: 0.85rem; }
 .footer-nav a:hover { color: var(--star); }
