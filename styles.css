@@ -152,7 +152,7 @@ select:focus-visible {
   align-items: center;
 }
 .brand-logo {
-  height: 86px;
+  height: 46px;
   width: auto;
   display: block;
   /* The source logo.png is white — inverted here so it reads as dark on
@@ -223,6 +223,68 @@ select:focus-visible {
   padding: calc(var(--header-h) + 2rem) var(--pad) 4rem;
   overflow-x: hidden;
 }
+
+/* Dark "network" hero variant — used on the homepage */
+.hero-dark {
+  background:
+    radial-gradient(circle at 15% 15%, rgba(79,214,255,0.10), transparent 45%),
+    radial-gradient(circle at 85% 75%, rgba(224,146,60,0.10), transparent 45%),
+    linear-gradient(135deg, #05070f 0%, #14103a 45%, #2c1f66 78%, #3c2a86 100%);
+  justify-content: center;
+}
+.hero-network {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.hero-inner-centered {
+  max-width: 780px;
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+.hero-dark .eyebrow { color: #7fe6c9; }
+.hero-dark .hero-title {
+  color: #fff;
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
+}
+.hero-dark .hero-lede {
+  color: rgba(255,255,255,0.72);
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero-dark .hero-actions { justify-content: center; }
+.btn-ghost-dark {
+  border-color: rgba(255,255,255,0.3);
+  color: #fff !important;
+}
+.btn-ghost-dark:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+
+/* Vertical side label */
+.hero-vertical-label {
+  position: absolute;
+  right: clamp(1.2rem, 3vw, 2.6rem);
+  top: 50%;
+  transform: translateY(-50%) rotate(180deg);
+  writing-mode: vertical-rl;
+  color: rgba(255,255,255,0.55);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  z-index: 2;
+  display: none;
+}
+.hero-chevron {
+  position: absolute;
+  left: 50%;
+  bottom: 1.8rem;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.6);
+  z-index: 2;
+}
+
 .hero-inner {
   max-width: 640px;
   position: relative;
@@ -838,6 +900,10 @@ a.area-card { display: block; cursor: pointer; }
 /* ==========================================================================
    RESPONSIVE
    ========================================================================== */
+@media (min-width: 921px) {
+  .hero-vertical-label { display: block; }
+}
+
 @media (max-width: 920px) {
   .hero-orbit { opacity: 0.35; width: 80vw; right: -20%; }
   .grid-2 { grid-template-columns: 1fr; }
