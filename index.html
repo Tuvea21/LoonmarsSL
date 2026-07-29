@@ -29,10 +29,11 @@
 
     <nav class="main-nav" id="mainNav">
       <a href="index.html" class="active" data-nav>Início</a>
-      <a href="sobre.html" data-nav>Sobre a Loonmars</a>
+      <a href="sobre.html" data-nav>Sobre à Loonmars</a>
       <a href="projectos.html" data-nav>Projectos</a>
-      <a href="midia.html" data-nav>Mídia</a>
-      <a href="newsletter.html" data-nav>Newsletter e eventos</a>
+      <a href="midia.html">Mídia</a>
+      <a href="newsletter.html">Newsletter e eventos</a>
+      <a href="equipa.html" data-nav>Equipa</a>
       <a href="contacto.html" class="nav-cta" data-nav>Contacto</a>
     </nav>
 
@@ -42,8 +43,10 @@
   </div>
 </header>
 
-<section class="hero" id="top">
-  <div class="hero-inner">
+<section class="hero hero-dark" id="top">
+  <canvas id="heroNetwork" class="hero-network" aria-hidden="true"></canvas>
+
+  <div class="hero-inner hero-inner-centered">
     <p class="eyebrow mono">Maputo, Moçambique — Fundada em 2025</p>
     <h1 class="hero-title">
       Ultra Limites, Beyond Gravity.
@@ -54,48 +57,17 @@
     </p>
     <div class="hero-actions">
       <a href="missao.html" class="btn btn-primary">Conhecer a missão</a>
-      <a href="contacto.html" class="btn btn-ghost">Fale connosco</a>
+      <a href="contacto.html" class="btn btn-ghost btn-ghost-dark">Fale connosco</a>
     </div>
   </div>
 
-  <div class="hero-orbit" aria-hidden="true">
-    <svg viewBox="0 0 520 520" class="orbit-svg">
-      <defs>
-        <radialGradient id="planetGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="var(--ochre)" stop-opacity="0.35"/>
-          <stop offset="100%" stop-color="var(--ochre)" stop-opacity="0"/>
-        </radialGradient>
-      </defs>
-      <circle cx="260" cy="260" r="230" fill="url(#planetGlow)"/>
-      <ellipse cx="260" cy="260" rx="200" ry="200" class="orbit-ring ring-1"/>
-      <ellipse cx="260" cy="260" rx="150" ry="150" class="orbit-ring ring-2"/>
-      <ellipse cx="260" cy="260" rx="95" ry="95" class="orbit-ring ring-3"/>
+  <span class="hero-vertical-label mono" aria-hidden="true">Ultra Limites, Beyond Gravity.</span>
 
-      <g class="origin-marker">
-        <circle cx="260" cy="355" r="4" fill="var(--signal)"/>
-        <circle cx="260" cy="355" r="9" fill="none" stroke="var(--signal)" stroke-width="1" opacity="0.6"/>
-        <text x="272" y="359" class="orbit-label mono">MAPUTO</text>
-      </g>
-
-      <path id="trajectory" class="trajectory-path"
-            d="M 260 355 C 210 300, 150 210, 175 130 C 190 85, 230 65, 260 65"
-            fill="none"/>
-
-      <g class="satellite">
-        <circle r="5" fill="var(--star)"/>
-        <rect x="-9" y="-2" width="6" height="4" fill="var(--star)" opacity="0.8"/>
-        <rect x="3" y="-2" width="6" height="4" fill="var(--star)" opacity="0.8"/>
-      </g>
-
-      <circle cx="260" cy="65" r="3" fill="var(--star)" opacity="0.9"/>
-      <text x="272" y="69" class="orbit-label mono">ÓRBITA</text>
+  <a href="#missao-teaser" class="banner-chevron hero-chevron" aria-label="Descer para o conteúdo">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
-  </div>
-
-  <div class="scroll-cue mono" aria-hidden="true">
-    <span>DESLIZE</span>
-    <span class="scroll-line"></span>
-  </div>
+  </a>
 </section>
 
 <main>
@@ -105,7 +77,7 @@
     <div class="reveal">
       <p class="eyebrow mono">001 — Missão</p>
       <h2 class="section-title">
-        Investigação  aplicada a um propósito, ver Moçambique..
+        Investigação  aplicada a um propósito, ver Moçambique.
       </h2>
       <p class="body-text">
         Somos uma startup moçambicana dedicada à investigação, desenvolvimento e inovação em
