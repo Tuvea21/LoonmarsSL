@@ -918,10 +918,11 @@ a.area-card { display: block; cursor: pointer; }
 }
 /* PLACEHOLDER GRADIENTS — replace with real headshots, e.g.:
    .member-photo-1 { background-image: url("images/maria-smith.jpg"); } */
-.member-photo-1 { background-image: url(images/filipe-nyusi1.jpg); }
-.member-photo-2 { background-image: url(images/MIRANDA2.jpg); }
-.member-photo-3 { background-image: url(images/neyma3.jpg); }
-.member-photo-4 { background-image: url(images/mia4.jpg); }
+.member-photo-1 { background-image: url(images/Fernando.jpeg); }
+.member-photo-2 { background-image: url(images/Diana.jpeg); }
+.member-photo-3 { background-image: url(images/filipe-nyusi1.jpg); }
+.member-photo-4 { background-image: url(images/Odon.jpeg); }
+.member-photo-5 { background-image: url(images/Salomao.jpeg); }
 .member-body { padding: 1.4rem 1.5rem 1.6rem; }
 .member-name { font-size: 1.05rem; margin-bottom: 0.15rem; }
 .accent-ochre { color: var(--ochre); }
