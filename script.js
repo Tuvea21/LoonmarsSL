@@ -14,6 +14,9 @@
      styles.css) is set to. */
   function updateHeaderHeight() {
     var h = header.offsetHeight;
+    var tickerH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--ticker-h")) || 0;
+    var ticker = document.querySelector(".announce-ticker");
+    if (ticker) h += tickerH;
     if (h > 0) {
       document.documentElement.style.setProperty("--header-h", h + "px");
     }
