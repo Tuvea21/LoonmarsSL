@@ -170,7 +170,7 @@ select:focus-visible {
 
 .site-header {
   position: fixed;
-  top: var(--ticker-h); left: 0; right: 0;
+  top: 0; left: 0; right: 0;
   z-index: 100;
   background: #ffffff;
   border-bottom: 1px solid var(--line);
@@ -178,6 +178,11 @@ select:focus-visible {
 }
 .site-header.scrolled {
   box-shadow: 0 2px 10px rgba(16,24,43,0.06);
+}
+/* Only index.html has the ticker bar (body.has-ticker) — push its header
+   down to make room. Other pages keep the header flush at the top. */
+body.has-ticker .site-header {
+  top: var(--ticker-h);
 }
 .header-inner {
   max-width: var(--max-w);
@@ -193,7 +198,7 @@ select:focus-visible {
   align-items: center;
 }
 .brand-logo {
-  height: 86px;
+  height: 46px;
   width: auto;
   display: block;
   /* The source logo.png is white — inverted here so it reads as dark on
@@ -953,8 +958,8 @@ a.area-card { display: block; cursor: pointer; }
 @media (max-width: 760px) {
   .main-nav {
     position: fixed;
-    top: var(--ticker-h); right: 0;
-    height: calc(100svh - var(--ticker-h));
+    top: 0; right: 0;
+    height: 100svh;
     width: min(78vw, 320px);
     background: var(--deep);
     border-left: 1px solid var(--line);
@@ -967,6 +972,10 @@ a.area-card { display: block; cursor: pointer; }
     transition: transform 0.3s ease;
   }
   .main-nav.open { transform: translateX(0); }
+  body.has-ticker .main-nav {
+    top: var(--ticker-h);
+    height: calc(100svh - var(--ticker-h));
+  }
   .main-nav a { font-size: 1.05rem; }
   .nav-cta { align-self: flex-start; }
   .menu-toggle { display: flex; }
@@ -977,7 +986,7 @@ a.area-card { display: block; cursor: pointer; }
 
 @media (max-width: 520px) {
   .header-inner { padding: 0.75rem var(--pad); }
-  .brand-logo { height: 46px; }
+  .brand-logo { height: 36px; }
   .hero-actions { flex-direction: column; align-items: stretch; }
   .stat-row { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
   .stat-label { text-align: left; }
