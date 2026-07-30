@@ -7,6 +7,9 @@
 :root {
   /* Header height — kept in sync automatically by script.js, this is just a fallback */
   --header-h: 84px;
+  /* Announcement ticker bar height — kept constant across breakpoints so the
+     header can sit reliably right below it */
+  --ticker-h: 32px;
 
   /* Color — light theme */
   --void: #ffffff;         /* page background */
@@ -127,9 +130,47 @@ select:focus-visible {
 }
 
 /* ---------- Header ---------- */
-.site-header {
+/* ---------- Announcement ticker bar ---------- */
+.announce-ticker {
   position: fixed;
   top: 0; left: 0; right: 0;
+  z-index: 101;
+  height: var(--ticker-h);
+  background: var(--star);
+  color: #fff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: tickerScroll 26s linear infinite;
+}
+.ticker-content {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  padding-right: 3rem;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.03em;
+}
+.ticker-content .sep { margin: 0 0.9rem; color: var(--ochre); }
+@keyframes tickerScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation-play-state: paused; }
+}
+@media (max-width: 520px) {
+  .ticker-content { font-size: 0.68rem; }
+}
+
+.site-header {
+  position: fixed;
+  top: var(--ticker-h); left: 0; right: 0;
   z-index: 100;
   background: #ffffff;
   border-bottom: 1px solid var(--line);
@@ -152,7 +193,7 @@ select:focus-visible {
   align-items: center;
 }
 .brand-logo {
-  height: 86px;
+  height: 46px;
   width: auto;
   display: block;
   /* The source logo.png is white — inverted here so it reads as dark on
@@ -728,7 +769,7 @@ a.area-card { display: block; cursor: pointer; }
   gap: 1.4rem;
 }
 .footer-brand { display: flex; flex-direction: column; line-height: 1.2; }
-.footer-logo { height: 66px; width: auto; opacity: 0.85; filter: invert(1); }
+.footer-logo { height: 36px; width: auto; opacity: 0.85; filter: invert(1); }
 .footer-nav { display: flex; flex-wrap: wrap; gap: 1.3rem; }
 .footer-nav a { color: var(--muted); font-size: 0.85rem; }
 .footer-nav a:hover { color: var(--star); }
@@ -912,8 +953,8 @@ a.area-card { display: block; cursor: pointer; }
 @media (max-width: 760px) {
   .main-nav {
     position: fixed;
-    top: 0; right: 0;
-    height: 100svh;
+    top: var(--ticker-h); right: 0;
+    height: calc(100svh - var(--ticker-h));
     width: min(78vw, 320px);
     background: var(--deep);
     border-left: 1px solid var(--line);
