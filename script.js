@@ -329,21 +329,21 @@
     var TESTIMONIALS = [
       {
         quote: "A colaboração com a Loonmars trouxe uma perspectiva de engenharia séria e aplicada aos nossos projectos de investigação conjunta.",
-        name: "Nome do Parceiro",
+        name: "Emerson Miranda",
         role: "Instituição académica parceira",
         initials: "EM",
         photo: "images/MIRANDA2.jpg"
       },
       {
         quote: "É raro ver uma equipa tão jovem a trabalhar com este nível de rigor técnico num campo tão exigente como o espacial.",
-        name: "Nome do Investidor",
+        name: "Filipe Nyusi",
         role: "Parceiro de investimento",
         initials: "FN",
         photo: "images/filipe-nyusi1.jpg"
       },
       {
         quote: "O trabalho da Loonmars na estação terrestre abriu portas para projectos de observação da Terra que antes pareciam distantes.",
-        name: "Nome do Colaborador",
+        name: "Mia couto",
         role: "Colaborador de investigação",
         initials: "MC",
         photo: "images/mia4.jpg"
