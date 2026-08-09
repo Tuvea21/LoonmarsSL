@@ -391,6 +391,29 @@
     }
   }
 
+  /* ---------------- Nav dropdown ("Sobre a Loonmars") ---------------- */
+  document.querySelectorAll(".nav-dropdown-toggle").forEach(function (btn) {
+    var dropdown = btn.closest(".nav-dropdown");
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var isOpen = dropdown.classList.toggle("open");
+      btn.setAttribute("aria-expanded", String(isOpen));
+    });
+  });
+  document.addEventListener("click", function () {
+    document.querySelectorAll(".nav-dropdown.open").forEach(function (d) {
+      d.classList.remove("open");
+      d.querySelector(".nav-dropdown-toggle").setAttribute("aria-expanded", "false");
+    });
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      document.querySelectorAll(".nav-dropdown.open").forEach(function (d) {
+        d.classList.remove("open");
+      });
+    }
+  });
+
   /* ---------------- Footer year ---------------- */
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
