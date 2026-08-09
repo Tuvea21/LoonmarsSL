@@ -992,3 +992,72 @@ a.area-card { display: block; cursor: pointer; }
   .stat-row { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
   .stat-label { text-align: left; }
 }
+
+/* ---------- Nav dropdown ("Sobre a Loonmars") ---------- */
+.nav-dropdown { position: relative; }
+.nav-dropdown-toggle {
+  background: none;
+  border: none;
+  font: inherit;
+  color: var(--muted);
+  font-size: 0.88rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0;
+}
+.nav-dropdown-toggle:hover,
+.nav-dropdown.open .nav-dropdown-toggle { color: var(--star); }
+.nav-dropdown-toggle .caret { font-size: 0.7em; transition: transform 0.2s ease; }
+.nav-dropdown.open .nav-dropdown-toggle .caret { transform: rotate(180deg); }
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.9rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(16,24,43,0.1);
+  min-width: 200px;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+  z-index: 50;
+}
+.nav-dropdown.open .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.nav-dropdown-menu a {
+  padding: 0.55rem 0.7rem;
+  border-radius: 6px;
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+.nav-dropdown-menu a:hover { background: var(--deep); color: var(--star); }
+
+@media (max-width: 760px) {
+  .nav-dropdown-menu {
+    position: static;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+    padding: 0.2rem 0 0 0.9rem;
+    margin-top: 0.6rem;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    display: none;
+  }
+  .nav-dropdown.open .nav-dropdown-menu { display: flex; }
+  .nav-dropdown-toggle { font-size: 1.05rem; }
+}
