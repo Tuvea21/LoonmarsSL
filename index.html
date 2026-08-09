@@ -50,10 +50,19 @@
 
     <nav class="main-nav" id="mainNav">
       <a href="index.html" class="active" data-nav>Início</a>
-      <a href="sobre.html" data-nav>Sobre à Loonmars</a>
-      <a href="projectos.html" data-nav>Projectos</a>
-      <a href="midia.html">Mídia</a>
-      <a href="newsletter.html">Newsletter e eventos</a>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+          Sobre a Loonmars <span class="caret">▾</span>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="sobre.html" data-nav>Sobre a Loonmars</a>
+          <a href="projectos.html" data-nav>Projectos</a>
+          <a href="midia.html" data-nav>Mídia</a>
+        </div>
+      </div>
+
+      <a href="newsletter.html" data-nav>Newsletter e eventos</a>
       <a href="contacto.html" class="nav-cta" data-nav>Contacto</a>
     </nav>
 
@@ -124,7 +133,7 @@
       </div>
       <div class="stat-row">
         <span class="stat-value mono">I&amp;D</span>
-        <span class="stat-label">Núcleo: investigaço aplicada</span>
+        <span class="stat-label">Núcleo: investigação aplicada</span>
       </div>
     </div>
     -->
