@@ -1016,7 +1016,7 @@ a.area-card { display: block; cursor: pointer; }
   position: absolute;
   top: 100%;
   left: 0;
-  margin-top: 0.9rem;
+  margin-top: 0.5rem;
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 10px;
@@ -1044,6 +1044,16 @@ a.area-card { display: block; cursor: pointer; }
   color: var(--muted);
 }
 .nav-dropdown-menu a:hover { background: var(--deep); color: var(--star); }
+
+@media (min-width: 761px) {
+  .nav-dropdown:hover .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .nav-dropdown:hover .nav-dropdown-toggle { color: var(--star); }
+  .nav-dropdown:hover .nav-dropdown-toggle .caret { transform: rotate(180deg); }
+}
 
 @media (max-width: 760px) {
   .nav-dropdown-menu {
