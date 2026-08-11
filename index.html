@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Início — Loonmars Space Lab</title>
+<meta name="description" content="Loonmars Space Lab — startup moçambicana de investigação e inovação em sistemas espaciais e arquitetura.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="icon.png" type="image/png">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="has-ticker">
+
+ <div class="announce-ticker" role="marquee" aria-label="Avisos">
+  <div class="ticker-track">
+    <div class="ticker-content">
+      <span>A Loonmars Space Lab está a organizar um evento especial alusivo ao dia internacional de observação da lua que será realizado no dia 29 de agosto no colégio Nhamunda pelas 14h </span>
+      <span class="sep">·</span>
+      <span>Subscreva a newsletter para não perder os próximos eventos</span>
+      <span class="sep">·</span>
+      <span>Maputo, Moçambique</span>
+      <span class="sep">·</span>
+    </div>
+    <div class="ticker-content" aria-hidden="true">
+      <span>A Loonmars Space Lab está a organizar um evento especial alusivo ao dia internacional de observação da lua que será realizado no dia 29 de agosto no colégio Nhamunda pelas 14h </span>
+      <span class="sep">·</span>
+      <span>Subscreva a newsletter para não perder os próximos eventos</span>
+      <span class="sep">·</span>
+      <span>Maputo, Moçambique</span>
+      <span class="sep">·</span>
+    </div>
+  </div>
+</div>
+
+<canvas id="starfield" aria-hidden="true"></canvas>
+
+<!-- Decorative ambient glow — purely visual, sits behind all content -->
+<div class="bg-aura bg-aura-ochre" aria-hidden="true"></div>
+<div class="bg-aura bg-aura-signal" aria-hidden="true"></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <div class="header-left">
+      <!-- Substitua o href pelo endereço real do seu webmail -->
+      <a href="https://webmail.loonmarsspacelab.co.mz" class="webmail-btn" aria-label="Aceder ao Webmail" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="5" width="18" height="14" rx="2.4" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+
+      <a href="index.html" class="brand">
+        <img src="logo.png" alt="Loonmars Space Lab" class="brand-logo">
+      </a>
+    </div>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="index.html" class="active" data-nav>Início</a>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+          Sobre a Loonmars <span class="caret">▾</span>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="sobre.html" data-nav>Sobre a Loonmars</a>
+          <a href="projectos.html" data-nav>Projectos</a>
+          <a href="midia.html" data-nav>Mídia</a>
+        </div>
+      </div>
+
+      <a href="newsletter.html" data-nav>Newsletter e eventos</a>
+      <a href="contacto.html" class="nav-cta" data-nav>Contacto</a>
+    </nav>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainNav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="hero hero-dark" id="top">
+  <canvas id="heroNetwork" class="hero-network" aria-hidden="true"></canvas>
+
+  <div class="hero-inner hero-inner-centered">
+    <p class="eyebrow mono">Maputo, Moçambique — Fundada em 2025</p>
+    <h1 class="hero-title">
+      Ultra Limites, Beyond Gravity.
+    </h1>
+    <p class="hero-lede">
+      A Loonmars Space Lab investiga, desenha e constrói sistemas de tecnologia espacial e
+      arquitetura aeroespacial — para colocar Moçambique no mapa da exploração do espaço.
+    </p>
+    <div class="hero-actions">
+      <a href="sobre.html" class="btn btn-primary">Conhecer a missão</a>
+      <a href="contacto.html" class="btn btn-ghost btn-ghost-dark">Fale connosco</a>
+    </div>
+  </div>
+
+  <span class="hero-vertical-label mono" aria-hidden="true">Ultra Limites, Ultra Gravitatem. <br> Beyond Boundaries, Beyond Gravity.  </span>
+   
+
+  <a href="#missao-teaser" class="banner-chevron hero-chevron" aria-label="Descer para o conteúdo">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</section>
+
+<main>
+
+<section class="section" id="missao-teaser">
+  <div class="section-inner grid-2">
+    <div class="reveal">
+      <p class="eyebrow mono">001 — Missão</p>
+      <h2 class="section-title">
+        Investigação  aplicada a um propósito, ver Moçambique.
+      </h2>
+      <p class="body-text">
+        Somos uma startup moçambicana dedicada à investigação, desenvolvimento e inovação em
+        sistemas de tecnologias espaciais e arquitetura. O nosso objectivo é claro: contribuir
+        para o avanço tecnológico do país e posicionar Moçambique no ecossistema global da
+        exploração espacial.
+      </p>
+      <a href="sobre.html" class="link-arrow">Ler a missão completa →</a>
+    </div>
+ <!--
+    <div class="stat-panel reveal">
+      <div class="stat-row">
+        <span class="stat-value mono">2025</span>
+        <span class="stat-label">Ano de fundação</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-value mono">04</span>
+        <span class="stat-label">Áreas de investigação activas</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-value mono">MPT</span>
+        <span class="stat-label">Sede em Maputo, Moçambique</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-value mono">I&amp;D</span>
+        <span class="stat-label">Núcleo: investigação aplicada</span>
+      </div>
+    </div>
+    -->
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="section-inner">
+    <p class="eyebrow mono">002 — Últimas notícias</p>
+    <h2 class="section-title">O que estamos a construir, em tempo real.</h2>
+    <p class="body-text max-60">
+      Atualizações do laboratório — resultados de investigação, protótipos e marcos dos
+      nossos programas.
+    </p>
+
+    <!-- PLACEHOLDER: substitua a imagem de fundo (background-image inline) e o texto
+         de cada .news-card pelas suas notícias e fotos reais. -->
+    <div class="news-grid reveal">
+      <a class="news-card" href="midia.html">
+        <div class="news-photo news-photo-1" role="img" aria-label="Equipa Loonmars em laboratório"></div>
+        <div class="news-body">
+          <span class="news-date mono">15 Jul 2026</span>
+          <h3> Programa CubeSat - avança para fase de estudo de viabilidade</h3>
+          <p>O nosso primeiro nanosatélite de observação da Terra entra na fase seguinte de investigação.</p>
+        </div>
+      </a>
+      <a class="news-card" href="midia.html">
+        <div class="news-photo news-photo-2" role="img" aria-label="Protótipo de estação terrestre"></div>
+        <div class="news-body">
+          <span class="news-date mono">02 Jun 2026</span>
+          <h3>Observação da Lua em Maputo</h3>
+          <p>Dos astros que observamos no céu, a Lua é aquele que mais prende a nossa atenção, não só..</p>
+        </div>
+      </a>
+      <a class="news-card" href="midia.html">
+        <div class="news-photo news-photo-3" role="img" aria-label="Loonmars em conferência espacial"></div>
+        <div class="news-body">
+          <span class="news-date mono">20 Mai 2026</span>
+          <h3>Loonmars junta-se à uma parceria</h3>
+          <p>Uma nova parceria para partilhar investigação e acelerar o acesso.</p>
+        </div>
+      </a>
+    </div>
+
+    <a href="midia.html" class="link-arrow">Ver todas as notícias e mídia →</a>
+  </div>
+</section>
+
+<section class="section newsletter-band">
+  <div class="section-inner newsletter-inner reveal">
+    <div>
+      <p class="eyebrow mono">003 — Newsletter e eventos</p>
+      <h2 class="section-title">Não perca os próximos eventos.</h2>
+      <p class="body-text max-60">
+        Receba, por email, as novidades dos nossos programas, convites para eventos e
+        oportunidades de colaboração — sem spam, só o essencial.
+      </p>
+    </div>
+    <a href="newsletter.html" class="btn btn-primary">Subscrever a newsletter</a>
+  </div>
+</section>
+
+
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="logo.png" alt="Loonmars Space Lab" class="footer-logo">
+    </div>
+    <nav class="footer-nav">
+      <a href="sobre.html">Sobre à Loonmars</a>
+      <a href="projectos.html">Projectos</a>
+      <a href="midia.html">Mídia</a>
+      <a href="newsletter.html">Newsletter e eventos</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+    <p class="footer-copy mono">© <span id="year"></span> Loonmars Space Lab</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
