@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Newsletter e Eventos — Loonmars Space Lab</title>
+<meta name="description" content="Notícias da Loonmars Space Lab, novidades do sector espacial, eventos e arquivo da newsletter.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="logo.png" type="image/png">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="bg-aura bg-aura-ochre" aria-hidden="true"></div>
+<div class="bg-aura bg-aura-signal" aria-hidden="true"></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <div class="header-left">
+      <a href="index.html" class="brand">
+        <img src="logo.png" alt="Loonmars Space Lab" class="brand-logo">
+      </a>
+    </div>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="index.html" data-nav>Início</a>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+          Sobre a Loonmars <span class="caret">▾</span>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="sobre.html" data-nav>Sobre a Loonmars</a>
+          <a href="projectos.html" data-nav>Projectos</a>
+          <a href="midia.html" data-nav>Mídia</a>
+        </div>
+      </div>
+
+      <a href="newsletter.html" class="active" data-nav>Newsletter e eventos</a>
+      <a href="contacto.html" class="nav-cta" data-nav>Contacto</a>
+    </nav>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainNav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ BANNER + PESQUISA ============ -->
+<section class="nl-banner">
+  <div class="section-inner nl-banner-inner">
+    <p class="eyebrow mono">Newsletter e Eventos</p>
+    <h1 class="nl-banner-title">Tudo o que se move no espaço, num só sítio.</h1>
+    <p class="body-text nl-banner-lede">
+      Notícias da Loonmars, do sector espacial global e os próximos eventos — pesquise,
+      filtre e não perca nada.
+    </p>
+
+    <div class="nl-search">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      <input type="search" id="newsSearch" placeholder="Pesquisar notícias, eventos, temas...">
+    </div>
+  </div>
+</section>
+
+<main>
+
+<!-- ============ ARTIGO EM DESTAQUE ============ -->
+<section class="section" id="destaque">
+  <div class="section-inner">
+    <p class="eyebrow mono">Em destaque</p>
+    <article class="featured-article reveal">
+      <div class="featured-photo" role="img" aria-label="Kutchinga-1 em fase de estudo de viabilidade"></div>
+      <div class="featured-body">
+        <span class="tag-badge tag-loonmars">Loonmars</span>
+        <span class="news-date mono">15 Jul 2026</span>
+        <h2>Kutchinga-1 avança para fase de estudo de viabilidade</h2>
+        <p>
+          O nosso primeiro nanosatélite de observação da Terra entra na fase seguinte de
+          investigação, com foco em monitorização agrícola e costeira ao longo do
+          território moçambicano. A equipa espera concluir o estudo de viabilidade
+          ainda este ano.
+        </p>
+        <a href="#" class="link-arrow">Ler artigo completo →</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ FILTROS + GRELHA DE NOTÍCIAS ============ -->
+<section class="section section-alt" id="noticias">
+  <div class="section-inner">
+    <p class="eyebrow mono">Notícias</p>
+    <h2 class="section-title">Loonmars e o mundo espacial.</h2>
+    <p class="body-text max-60">
+      Actualizações dos nossos programas, mais notícias do sector espacial global, e
+      cobertura de eventos — tudo num só lugar.
+    </p>
+
+    <div class="filter-tabs" id="filterTabs">
+      <button type="button" class="filter-tab active" data-filter="todas">Todas</button>
+      <button type="button" class="filter-tab" data-filter="loonmars">Loonmars</button>
+      <button type="button" class="filter-tab" data-filter="espaco">Espaço &amp; Mundo</button>
+      <button type="button" class="filter-tab" data-filter="eventos">Eventos</button>
+    </div>
+
+    <p class="nl-results-count mono" id="resultsCount"></p>
+
+    <div class="news-grid nl-news-grid" id="newsGrid"></div>
+
+    <p class="nl-empty" id="emptyState" hidden>Nenhum resultado encontrado. Tente outra pesquisa.</p>
+
+    <div class="nl-load-more-wrap">
+      <button type="button" class="btn btn-ghost" id="loadMoreBtn">Carregar mais notícias</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEWSLETTER SIGNUP ============ -->
+<section class="section">
+  <div class="section-inner grid-2">
+    <div class="reveal">
+      <p class="eyebrow mono">Subscrever</p>
+      <h2 class="section-title">Não perca os próximos lançamentos.</h2>
+      <p class="body-text">
+        Receba, por email, as novidades dos nossos programas, convites para eventos e
+        oportunidades de colaboração — sem spam, só o essencial.
+      </p>
+      <ul class="perk-list">
+        <li>Actualizações de programas — Kutchinga-1, Estação Terrestre Maputo e outros.</li>
+        <li>Convites para eventos, palestras e demonstrações abertas ao público.</li>
+        <li>Um resumo mensal do que se passa no sector espacial global.</li>
+      </ul>
+    </div>
+
+    <form class="contact-form reveal" id="newsletterForm" novalidate>
+      <div class="form-row">
+        <label for="nl-name">Nome</label>
+        <input type="text" id="nl-name" name="name" required autocomplete="name" placeholder="O seu nome">
+      </div>
+      <div class="form-row">
+        <label for="nl-email">Email</label>
+        <input type="email" id="nl-email" name="email" required autocomplete="email" placeholder="voce@exemplo.com">
+      </div>
+      <button type="submit" class="btn btn-primary btn-full">Subscrever</button>
+      <p class="form-status" id="newsletterStatus" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ PRÓXIMOS EVENTOS ============ -->
+<section class="section section-alt" id="eventos">
+  <div class="section-inner">
+    <p class="eyebrow mono">Agenda</p>
+    <h2 class="section-title">Próximos eventos</h2>
+    <p class="body-text max-60">
+      Datas e locais são adicionados aqui à medida que forem confirmados.
+    </p>
+
+    <div class="event-timeline reveal">
+      <article class="event-row">
+        <div class="event-date-badge">
+          <span class="event-day">29</span>
+          <span class="event-month mono">AGO</span>
+        </div>
+        <div class="event-info">
+          <h3>Dia Internacional de Observação da Lua</h3>
+          <p>Evento aberto ao público no Colégio Nhamunda, Maputo, às 14h — telescópios, palestras e actividades para todas as idades.</p>
+          <span class="event-meta mono">Colégio Nhamunda · Maputo</span>
+        </div>
+        <span class="status-tag status-research mono">Confirmado</span>
+      </article>
+
+      <article class="event-row">
+        <div class="event-date-badge">
+          <span class="event-day">—</span>
+          <span class="event-month mono">2026</span>
+        </div>
+        <div class="event-info">
+          <h3>Demonstração Aberta — Estação Terrestre</h3>
+          <p>Apresentação pública do protótipo da estação terrestre em Maputo, com receção ao vivo de dados de satélite.</p>
+          <span class="event-meta mono">Maputo</span>
+        </div>
+        <span class="status-tag status-concept mono">Data a confirmar</span>
+      </article>
+
+      <article class="event-row">
+        <div class="event-date-badge">
+          <span class="event-day">—</span>
+          <span class="event-month mono">2026</span>
+        </div>
+        <div class="event-info">
+          <h3>Webinar — Arquitectura para o Espaço</h3>
+          <p>Sessão aberta sobre os desafios de desenhar estruturas para ambientes extremos, com a nossa equipa de arquitectura espacial.</p>
+          <span class="event-meta mono">Online</span>
+        </div>
+        <span class="status-tag status-concept mono">Data a confirmar</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ARQUIVO DA NEWSLETTER ============ -->
+<section class="section" id="arquivo">
+  <div class="section-inner">
+    <p class="eyebrow mono">Arquivo</p>
+    <h2 class="section-title">Edições anteriores</h2>
+    <p class="body-text max-60">
+      Já perdeu uma edição? Recupere aqui.
+    </p>
+
+    <div class="archive-list reveal">
+      <a href="#" class="archive-row">
+        <span class="archive-issue mono">Edição 003</span>
+        <span class="archive-title">Kutchinga-1, parcerias africanas e o que aí vem</span>
+        <span class="archive-date mono">Julho 2026</span>
+      </a>
+      <a href="#" class="archive-row">
+        <span class="archive-issue mono">Edição 002</span>
+        <span class="archive-title">Primeiro protótipo da Estação Terrestre Maputo</span>
+        <span class="archive-date mono">Junho 2026</span>
+      </a>
+      <a href="#" class="archive-row">
+        <span class="archive-issue mono">Edição 001</span>
+        <span class="archive-title">Assim nasceu a Loonmars Space Lab</span>
+        <span class="archive-date mono">Maio 2026</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-band">
+  <div class="section-inner cta-inner reveal">
+    <h2 class="section-title">Tem uma notícia para partilhar connosco?</h2>
+    <p class="body-text max-60">
+      Investigadores, jornalistas e parceiros podem entrar em contacto para sugerir
+      conteúdos para a newsletter.
+    </p>
+    <a href="contacto.html" class="btn btn-primary">Fale connosco</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="logo.png" alt="Loonmars Space Lab" class="footer-logo">
+    </div>
+    <nav class="footer-nav">
+      <a href="sobre.html">Sobre à Loonmars</a>
+      <a href="projectos.html">Projectos</a>
+      <a href="midia.html">Mídia</a>
+      <a href="newsletter.html">Newsletter e eventos</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+    <p class="footer-copy mono">© <span id="year"></span> Loonmars Space Lab</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="newsletter-data.js"></script>
+</body>
+</html>
