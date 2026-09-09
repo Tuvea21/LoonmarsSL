@@ -1422,11 +1422,71 @@ a.area-card { display: block; cursor: pointer; }
 .history-item h3 { font-size: 1.05rem; margin-bottom: 0.4rem; }
 .history-item p { color: var(--muted); font-size: 0.92rem; max-width: 56ch; }
 
+/* ==========================================================================
+   NEWS CAROUSEL (homepage, between hero and missão teaser)
+   ========================================================================== */
+.news-carousel-section { padding-bottom: 1rem; }
+.nc-header { text-align: center; margin-bottom: 2.6rem; }
+.nc-title { font-size: clamp(1.6rem, 3vw, 2.1rem); margin-bottom: 0.7rem; }
+.nc-underline {
+  display: inline-block;
+  width: 56px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--ochre);
+}
 
+.nc-carousel {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.nc-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--star);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.nc-arrow svg { width: 20px; height: 20px; }
+.nc-arrow:hover { background: var(--ochre); border-color: var(--ochre); color: #fff; }
 
+.nc-slide-viewport { flex: 1; overflow: hidden; }
+.nc-slide-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+.nc-slide {
+  flex: 0 0 100%;
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: clamp(1.6rem, 4vw, 3rem);
+  align-items: center;
+  padding: 0 0.4rem;
+}
+.nc-slide-photo {
+  height: clamp(220px, 24vw, 300px);
+  border-radius: 16px;
+  background-color: var(--deep);
+  background-size: cover;
+  background-position: center;
+}
+.nc-slide-photo-1 { background-image: radial-gradient(circle at 30% 30%, #3a4a72, #10182b 70%); }
+.nc-slide-photo-2 { background-image: radial-gradient(circle at 70% 40%, #3d6f5c, #10182b 70%); }
+.nc-slide-photo-3 { background-image: radial-gradient(circle at 40% 60%, #7a4f28, #10182b 70%); }
+.nc-slide-date { color: var(--ochre); font-size: 0.75rem; display: block; margin-bottom: 0.7rem; }
+.nc-slide-body h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); line-height: 1.25; margin-bottom: 0.9rem; }
+.nc-slide-body p { color: var(--muted); margin-bottom: 1.3rem; }
 
-
-
-
-
-
+@media (max-width: 760px) {
+  .nc-slide { grid-template-columns: 1fr; }
+  .nc-arrow { width: 38px; height: 38px; }
+}
+.nc-dots { justify-content: center; margin-top: 1.8rem; }
