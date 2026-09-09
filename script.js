@@ -604,23 +604,109 @@
     renderNews();
   }
 
+  /* ---------------- Homepage news carousel (only present on index.html) ----
+     PLACEHOLDER CONTENT: edit the NC_SLIDES array below with real news,
+     dates and photos (set "photo" to an images/... path, or leave "" to
+     keep the gradient placeholder). */
+  var ncTrack = document.getElementById("ncTrack");
+  if (ncTrack) {
+    var NC_SLIDES = [
+      {
+        date: "15 Jul 2026",
+        title: "Programa CubeSat avança para fase de estudo de viabilidade",
+        text: "O nosso primeiro nanosatélite de observação da Terra entra na fase seguinte de investigação, com foco em monitorização agrícola e costeira.",
+        cta: "Ler notícia",
+        link: "newsletter.html",
+        photo: ""
+      },
+      {
+        date: "02 Jun 2026",
+        title: "Observação da Lua em Maputo reúne mais de 200 pessoas",
+        text: "Dos astros que observamos no céu, a Lua é aquele que mais prende a nossa atenção — e ficou provado no evento aberto ao público.",
+        cta: "Ler notícia",
+        link: "newsletter.html",
+        photo: ""
+      },
+      {
+        date: "20 Mai 2026",
+        title: "Loonmars junta-se a rede africana de startups espaciais",
+        text: "Uma nova parceria para partilhar investigação e acelerar o acesso ao espaço em toda a região austral de África.",
+        cta: "Ler notícia",
+        link: "newsletter.html",
+        photo: ""
+      }
+    ];
+
+    var ncDotsWrap = document.getElementById("ncDots");
+    var ncPrevBtn = document.getElementById("ncPrev");
+    var ncNextBtn = document.getElementById("ncNext");
+    var ncCarouselEl = document.getElementById("ncCarousel");
+    var ncIndex = 0;
+    var ncTimer = null;
+
+    ncTrack.innerHTML = NC_SLIDES.map(function (s, i) {
+      var photoStyle = s.photo ? ' style="background-image:url(\'' + s.photo + '\')"' : "";
+      var photoClass = s.photo ? "" : " nc-slide-photo-" + ((i % 3) + 1);
+      return (
+        '<div class="nc-slide">' +
+          '<div class="nc-slide-photo' + photoClass + '"' + photoStyle + ' role="img" aria-label="' + s.title + '"></div>' +
+          '<div class="nc-slide-body">' +
+            '<span class="nc-slide-date mono">' + s.date + "</span>" +
+            "<h3>" + s.title + "</h3>" +
+            "<p>" + s.text + "</p>" +
+            '<a href="' + s.link + '" class="btn btn-primary">' + s.cta + "</a>" +
+          "</div>" +
+        "</div>"
+      );
+    }).join("");
+
+    NC_SLIDES.forEach(function (_, i) {
+      var dot = document.createElement("button");
+      dot.type = "button";
+      dot.setAttribute("aria-label", "Notícia " + (i + 1));
+      dot.addEventListener("click", function () {
+        ncIndex = i;
+        ncUpdate();
+      });
+      ncDotsWrap.appendChild(dot);
+    });
+
+    function ncUpdate() {
+      ncTrack.style.transform = "translateX(-" + ncIndex * 100 + "%)";
+      Array.prototype.forEach.call(ncDotsWrap.children, function (dot, idx) {
+        dot.classList.toggle("active", idx === ncIndex);
+      });
+    }
+
+    function ncNext() {
+      ncIndex = (ncIndex + 1) % NC_SLIDES.length;
+      ncUpdate();
+    }
+    function ncPrev() {
+      ncIndex = (ncIndex - 1 + NC_SLIDES.length) % NC_SLIDES.length;
+      ncUpdate();
+    }
+
+    ncNextBtn.addEventListener("click", function () { ncNext(); resetNcTimer(); });
+    ncPrevBtn.addEventListener("click", function () { ncPrev(); resetNcTimer(); });
+
+    function startNcTimer() {
+      if (prefersReducedMotion) return;
+      ncTimer = setInterval(ncNext, 7000);
+    }
+    function resetNcTimer() {
+      clearInterval(ncTimer);
+      startNcTimer();
+    }
+
+    ncCarouselEl.addEventListener("mouseenter", function () { clearInterval(ncTimer); });
+    ncCarouselEl.addEventListener("mouseleave", startNcTimer);
+
+    ncUpdate();
+    startNcTimer();
+  }
+
   /* ---------------- Footer year ---------------- */
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
 })();
